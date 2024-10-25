@@ -5,22 +5,28 @@ import { Contact } from "./pages/Contact";
 import { Services } from "./pages/Services";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
+import { Navbar } from "./components/Navbar";
 
 //BrowserRouter: Used to keep the UI in sync with the URL.
 //Route: Void element with no opening tag. 
 
 const App = () => {
-  return <BrowserRouter>
-  <Routes>
-    <Route path="/" element={<Home/>}/> {/*we pass the component to the element*/}
-    <Route path="/about" element={<About/>}/>
-    <Route path="/contact" element={<Contact/>}/>
-    <Route path="/services" element={<Services/>}/>
-    <Route path="/register" element={<Register/>}/>
-    <Route path="/login" element={<Login/>}/>
-  </Routes>
-  </BrowserRouter>;
-};
+  return( 
+  <>
+    <BrowserRouter>
+      <Navbar/>
+      <Routes>
+        <Route path="/" element={<Home/>}/> {/*we pass the component to the element*/}
+        <Route path="/about" element={<About/>}/>
+        <Route path="/contact" element={<Contact/>}/>
+        <Route path="/services" element={<Services/>}/>
+        <Route path="/register" element={<Register/>}/>
+        <Route path="/login" element={<Login/>}/>
+      </Routes>
+    </BrowserRouter>
+  </>
+  )
+}
 //BrowserRouter: Used to keep the UI in sync with the URL.
 //Route: Void element with no opening tag. 
 export default App;
