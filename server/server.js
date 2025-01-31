@@ -1,7 +1,7 @@
 require('dotenv').config(); //Must be included when using env. MUST be placed at the first
 const express = require("express"); //imports the express module
 const app = express(); //creating an instance of express application
-const authRoute = require("./router/auth-router"); //imports router at the specified location
+const authRoute = require("./router/auth-router"); //imports router from the specified location
 const contactRoute = require("./router/contact-router");
 const connectDb = require("./utils/db");
 const errorMiddleware = require("./middlewares/error-middleware");
