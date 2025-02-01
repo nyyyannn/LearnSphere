@@ -1,0 +1,45 @@
+.section-hero
+{
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+    padding: 50px;
+}
+.titles
+{
+    text-align: center;
+}
+.titles h2
+{
+    font-size:xx-large;
+    margin: 10px;
+}
+.buttons
+{
+    display: flex;
+    margin: 20px;
+    
+}
+button
+{
+    color: hsl(120, 89%, 77%);
+    background-color: black;
+    font-weight: bold;
+    border-radius: 15px;
+    padding: 10px;
+    font-size: large;
+    display: flex;
+    margin: 20px;
+}
+button:hover
+{
+    transform: translateY(-5px);
+    color:hsl(120, 89%, 47%);
+    transition: 0.5s;
+    cursor:pointer;
+}
+button:not(:hover)
+{
+    transition: 0.5s;
+}

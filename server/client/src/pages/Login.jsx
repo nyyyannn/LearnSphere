@@ -30,7 +30,7 @@ export const Login = () => {
                 <div className="container grid grid-two-cols">
                     <div className="login-image">
                         <img 
-                            src="/images/login.png"
+                            src="/images/login.jpg"
                             alt="login form"
                             width="400"
                             height="500"
