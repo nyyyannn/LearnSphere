@@ -8,7 +8,7 @@ export const Navbar = () =>
     <header>
         <div className="container">
             <div className="logo-brand">
-                <NavLink to="/">LearnSphere</NavLink>
+                <li><NavLink to="/">LearnSphere</NavLink></li>
             </div>
             <nav>
                 <ul>

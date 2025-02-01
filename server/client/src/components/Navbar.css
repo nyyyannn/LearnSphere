@@ -5,9 +5,24 @@
     display: flex;
     justify-content: space-between;
 }
+.logo-brand
+{
+    font-size: 1.8rem;
+    line-height: 1.56;
+    letter-spacing: 0.1rem;
+    word-spacing: 0.06rem;
+    color: var(--btn-color);
+}
 ul
 {
     display: flex;
     gap: 3.2rem;
+}
+@media (max-width:800px)
+{
+    nav
+    {
+        visibility: hidden;
+    }
 }
 

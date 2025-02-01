@@ -1,13 +1,24 @@
+.inter-font{
+  font-family: "Inter", serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+.forum-regular {
+  font-family: "Forum", serif;
+  font-weight: 400;
+  font-style: normal;
+}
 *{
   margin: 0;
   padding: 0;
   box-sizing: border-box; 
-  color-scheme: #c0c0a4;
+  font-family: "Forum";
 }
 :root
 {
-  --bg-color: #f2f2e5;
-  --btn-color: #646cff;
+  --bg-color: #ebebe3;
+  --btn-color: #4575be;
   --dark-color: #242424;
   --helper-color: #99b9ff;
 }
@@ -27,6 +38,7 @@ h1
   font-size: 5.4rem;
   line-height: 1.1;
   font-weight: bold;
+  font-family: "Forum";
 }
 p,
 li,
@@ -42,20 +54,51 @@ textarea
 }
 a
 {
-  font-weight: 500;
-  font-size: 1.8rem;
+  font-weight: bold;
+  font-size: 23px;
   letter-spacing: 0.1rem;
   color: var(--btn-color);
   text-decoration: inherit;
+  font-family: "Forum";
 }
 li
 {
   list-style: none;
 }
+
+/*Layout*/
 .container
 {
   max-width: 140rem;
   padding: 4rem 2.4rem;
   margin: 0 auto;
+}
+
+/*Reusable components*/
+button
+{
+    text-transform: capitalize;
+    color: hsl(0, 0%, 100%);
+    background-color: hsl(216, 48%, 51%);
+    font-weight: bold;
+    border-radius: 15px;
+    padding: 10px;
+    font-size: large;
+    display: flex;
+    margin: 20px;
+    border: solid transparent;
+    letter-spacing: 0.2rem;
+}
+button:hover
+{
+    color:hsl(0, 0%, 80%);
+    transition: 0.5s;
+    transform: scale(1.1,1.1);
+    cursor:pointer;
+    border: solid transparent;
+}
+button:not(:hover)
+{
+    transition: 0.5s;
 }
 
