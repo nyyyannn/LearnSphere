@@ -6,6 +6,7 @@ import { Services } from "./pages/Services";
 import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import { Navbar } from "./components/Navbar";
+import { Footer } from "./components/Footer";
 
 //BrowserRouter: Used to keep the UI in sync with the URL.
 //Route: Void element with no opening tag. 
@@ -23,6 +24,7 @@ const App = () => {
         <Route path="/register" element={<Register/>}/>
         <Route path="/login" element={<Login/>}/>
       </Routes>
+      <Footer/>
     </BrowserRouter>
   </>
   )

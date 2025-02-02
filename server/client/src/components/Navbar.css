@@ -22,7 +22,11 @@ ul
 {
     nav
     {
-        visibility: hidden;
+        display: none;
+    }
+    .container
+    {
+        justify-content: center;
     }
 }
 
