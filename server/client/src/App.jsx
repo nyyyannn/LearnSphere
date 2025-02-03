@@ -7,6 +7,7 @@ import { Login } from "./pages/Login";
 import { Register } from "./pages/Register";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
+import { Error } from "./pages/Error";
 
 //BrowserRouter: Used to keep the UI in sync with the URL.
 //Route: Void element with no opening tag. 
@@ -23,6 +24,7 @@ const App = () => {
         <Route path="/services" element={<Services/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/login" element={<Login/>}/>
+        <Route path="*" element={<Error/>}/> {/* *=wildcard redirects to the page mentioned in element if the user enters a route other than the ones specified */}
       </Routes>
       <Footer/>
     </BrowserRouter>

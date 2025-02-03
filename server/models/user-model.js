@@ -6,11 +6,11 @@ const jwt = require("jsonwebtoken");
 const userSchema = new mongoose.Schema({
     username: {
         type:String,
-        require:true,
+        required:true,
     },
     email: {
         type: String,
-        require: true,
+        required: true,
     },
     phone: {
         type: String,
@@ -29,7 +29,7 @@ const userSchema = new mongoose.Schema({
 //securing the password with bcrypt
 userSchema.pre('save', async function(next){
     //console.log("pre method", this);
-    const user = this;
+    const user = this; //current user object being saved(the one above)
 
     try
     {

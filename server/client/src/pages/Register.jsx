@@ -35,10 +35,10 @@ export const Register = () => {
                     <div className="container grid grid-two-cols">
                         <div className="registration-image">
                             <img 
-                                src="/images/register.png" 
+                                src="/images/duck.gif" 
                                 alt="register form"
                                 width="600" 
-                                height="500"
+                                height="600"
                             />
                         </div> 
                         <div className="registration-form">
@@ -48,7 +48,7 @@ export const Register = () => {
 
                             <form onSubmit = {handleSubmit}> {/*Order should be the same as the one in schema (user-model.js) */}
                                 <div>
-                                    <label htmlFor="username">Username</label>
+                                    <label htmlFor="username">Username: </label>
                                     <input 
                                         type="text" 
                                         name="username"
@@ -61,7 +61,7 @@ export const Register = () => {
                                     />
                                 </div>
                                 <div>
-                                    <label htmlFor="Email">Email</label>
+                                    <label htmlFor="Email">Email: </label>
                                     <input 
                                         type="email" 
                                         name="email"
@@ -74,7 +74,7 @@ export const Register = () => {
                                     />
                                 </div>
                                 <div>
-                                    <label htmlFor="phone">Phone</label>
+                                    <label htmlFor="phone">Phone: </label>
                                     <input 
                                         type="tel" 
                                         name="phone"
@@ -89,7 +89,7 @@ export const Register = () => {
                                     />
                                 </div>
                                 <div>
-                                    <label htmlFor="password">Password</label>
+                                    <label htmlFor="password">Password: </label>
                                     <input 
                                         type="password" 
                                         name="password"

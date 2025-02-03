@@ -1,0 +1,57 @@
+.contact-container
+{
+    display:flex;
+    margin:20px;
+    justify-content: space-between;
+}
+.right-side-contact
+{
+    display:flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-right:auto;
+}
+.left-side-contact
+{
+    margin-right:100px;
+}
+.contact-button
+{
+    max-width: 100px;
+    margin-left: 0px;
+}
+.dropBy
+{
+    display:flex;
+    justify-content: center;
+    margin-bottom: 0px;
+    margin-top:80px;
+    text-align: center;
+}
+.map
+{
+    margin: 80px 40px 100px 40px;
+    display: flex;
+}
+.map iframe
+{
+    border:none;
+    border-radius:30%;
+}
+@media (max-width:970px)
+{
+    .left-side-contact
+    {
+        display: none;
+    }
+    .contact-container
+    {
+        justify-content: center;
+        align-items: center;
+    }
+    .right-side-contact
+    {
+        margin-right:0px;
+    }
+}
+

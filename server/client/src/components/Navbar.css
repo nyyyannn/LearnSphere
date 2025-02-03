@@ -12,6 +12,14 @@
     letter-spacing: 0.1rem;
     word-spacing: 0.06rem;
     color: var(--btn-color);
+    display: flex;
+}
+.logo-brand img
+{
+    align-items:center;
+    justify-content: center;
+    display:flex;
+    visibility: hidden;
 }
 ul
 {
@@ -24,9 +32,25 @@ ul
     {
         display: none;
     }
+    .logo-brand img 
+    {
+        visibility: visible;
+        cursor: pointer;
+    }
+    .logo-brand
+    {
+        width:100%;
+        justify-content: space-between;
+    }
+    .logo-brand li
+    {
+        margin-right:auto;
+        margin-left:auto;
+    }
     .container
     {
         justify-content: center;
+        margin:0px;
     }
 }
 

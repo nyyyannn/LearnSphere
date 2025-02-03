@@ -1,4 +1,3 @@
-import "./Footer.css";
 export const Footer = () =>
 {
     return(
@@ -8,4 +7,5 @@ export const Footer = () =>
             </footer>
         </>
     )
+    /*Css in the index.css file */
 }

@@ -8,6 +8,11 @@ export const Navbar = () =>
     <header>
         <div className="container">
             <div className="logo-brand">
+                <img 
+                    src="/images/navbar.png" 
+                    alt="3 dots navbar"
+                    width="35"
+                    height="35"/> 
                 <li><NavLink to="/">LearnSphere</NavLink></li>
             </div>
             <nav>
