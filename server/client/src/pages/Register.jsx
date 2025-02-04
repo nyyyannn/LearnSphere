@@ -1,5 +1,7 @@
 import { useState } from "react";
-export const Register = () => {
+import { useNavigate } from "react-router-dom";
+
+export const Register =  () => {
     
     const [user, setUser] = useState({
         username:"",
@@ -7,6 +9,8 @@ export const Register = () => {
         phone:"",
         password:"",
     }); {/*state variable, updated function = react hook*/}
+
+    const navigate = useNavigate();
 
     //handling the input values
     const handleInput = (e) => //on clicking the input field, we get a event that can be used to get the values
@@ -22,10 +26,33 @@ export const Register = () => {
     };
     
     //handling form submission
-    const handleSubmit = (e) =>
+    const handleSubmit = async (e) =>
     {
         e.preventDefault();
-        alert(user);
+        console.log(user);
+
+        const response = await fetch("http://localhost:5000/api/auth/register"//fetch returns a promise (which is type of object)
+            //that acts as a placeholder until the data is computed. It is either resolved or rejected
+        ,{ // this is an options object that contains details related to HTTP request (method, body, header, etc)
+            method:"POST",
+            headers:{
+                "Content-type":"application/json",
+            },
+            body:JSON.stringify(user), //converts JavaScript Object to JSON
+        })
+
+        if(response.ok)
+        {
+            const res_data = await response.json();
+            localStorage.setItem('Token',res_data.token);
+            setUser({
+                username:"",
+                email:"",
+                phone:"",
+                password:"",
+            })
+            navigate("/login");
+        }
     }
     
     return <> 

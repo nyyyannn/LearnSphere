@@ -117,7 +117,7 @@ form div
     flex-direction:column;
     margin-top:20px;
 }
-form div ::placeholder
+form div::placeholder
 {
   padding:5px;
 }
@@ -130,6 +130,7 @@ form div input
 {
   width:260px;
   height:30px;
+  padding:5px;
 }
 form
 {
@@ -152,7 +153,11 @@ footer
     bottom:0;
     width:100%;
     padding: 20px;
-    background-color: beige;
+    background-color: var(--btn-color);
+}
+footer p
+{
+  color:white;
 }
 
 /*Scrollbar*/

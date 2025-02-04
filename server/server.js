@@ -1,13 +1,24 @@
 require('dotenv').config(); //Must be included when using env. MUST be placed at the first
 const express = require("express"); //imports the express module
+const cors = require("cors"); //To prevent cors error
 const app = express(); //creating an instance of express application
 const authRoute = require("./router/auth-router"); //imports router from the specified location
 const contactRoute = require("./router/contact-router");
 const connectDb = require("./utils/db");
 const errorMiddleware = require("./middlewares/error-middleware");
 
+
+const corsOptions = {
+  origin: "http://localhost:5173", //allows requests only from this URL
+  methods: "GET, POST, PUT, DELETE, PATCH, HEAD", // the allowed methods, other methods will be blocked 
+  credentials:true, //necessary if we are using JWT, which we are, 
+  optionsSuccessStatus: 200 //optional
+}
+
+app.use(cors(corsOptions));// This line adds CORS middleware
+
 app.use(express.json()); /*This line of code adds Express middleware (functions that run between the request 
-from the client and the response from the server). that parses incoming request bodies with JSON 
+from the client and the response from the server) that parses incoming request bodies with JSON 
 payloads. It's important to place this before any routes that need to handle JSON data 
 in the request body. This middleware is responsible for parsing JSON data from requests, 
 and it should be applied at the beginning of your middleware stack to ensure it's available

@@ -16,7 +16,7 @@
     text-align: center;
     color: var(--dark-color);
     animation-name: intro;
-    animation-duration: 4s;
+    animation-duration: 3s;
     animation-iteration-count: 1;
 }
 .left-side

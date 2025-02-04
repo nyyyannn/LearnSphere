@@ -1,10 +1,14 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+
 export const Login = () => {
 
     const [user, setUser] = useState({
-        username:"",
+        email:"",
         password:""
     });
+
+    const navigate = useNavigate();
 
     const handleInput = (e) =>
     {
@@ -17,10 +21,39 @@ export const Login = () => {
         })
     }
 
-    const handleSubmit = (e) =>
+    const handleSubmit = async (e) =>
     {
         e.preventDefault();
-        alert(user);
+        try {
+            const response = await fetch("http://localhost:5000/api/auth/login",
+                {
+                    method:"POST",
+                    headers:
+                    {
+                        "Content-type":"application/json"
+                    },
+                    body:JSON.stringify(user)
+                }
+            )
+            if(response.ok)
+                {
+                    setUser({
+                        email:"",
+                        passowrd:"",
+                    })
+                    alert("Login successful");
+                    navigate("/");
+                    const res_data = await response.json();
+                    localStorage.setItem('Token',res_data.token);
+                }
+                else
+                {
+                    alert("Invalid credentials");
+                }
+        } 
+        catch (error) {
+            console.log(error);
+        }
     }
 
     return <>
@@ -39,17 +72,17 @@ export const Login = () => {
                     <div className="login-form">
                         <h1 className="main-heading">Login</h1>
                         <br/>
-                        <form>
+                        <form onSubmit={handleSubmit}>
                             <div>
-                                <label htmlFor="username">Username</label>
+                                <label htmlFor="email">Email</label>
                                 <input 
                                     type="text"
-                                    name="username"
-                                    placeholder="Username" 
-                                    id="username"
+                                    name="email"
+                                    placeholder="Email" 
+                                    id="email"
                                     required
                                     autoComplete="off"
-                                    value={user.username}
+                                    value={user.email}
                                     onChange={handleInput}
                                 />
                             </div>
@@ -66,6 +99,9 @@ export const Login = () => {
                                     onChange={handleInput}
                                 />
                             </div>
+                            <button>
+                                Login
+                            </button>
                         </form>
                     </div>
                 </div>
