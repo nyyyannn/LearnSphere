@@ -1,6 +1,7 @@
 /*This code is creating an authentication context in React using the Context API.
 The goal is to store an authentication token in the browser's localStorage so that the user stays logged in across page reloads.*/
 
+import { useEffect } from "react";
 import { createContext, useContext,useState } from "react"; 
 //createContext: Creates a global storage in react where data can be shared across components (prevents prop drilling)
 //useContext: Allows a component to access the data stored in that global storage 
@@ -11,6 +12,7 @@ export const AuthContext = createContext(); //returns a component that acts as g
 export const AuthProvider = ( {children} ) => //children is any component inside <AuthProvider></AuthProvider>
 {
     const [token, setToken] = useState(localStorage.getItem('Token'));
+    const [user, setUser] = useState("");
 
     let isLoggedIn = !!token;
 
@@ -25,8 +27,38 @@ export const AuthProvider = ( {children} ) => //children is any component inside
         return localStorage.removeItem('Token'); // removing the token from local storage    }
     }
 
+
+    //JWT Authentication - to get currently logged in user data
+    const userAuthentication = async () =>
+    {
+        try {
+            const response = await fetch("http://localhost:5000/api/auth/user", {
+                                    method:"GET",
+                                    headers:
+                                    {
+                                        Authorization:`Bearer ${token}`
+                                    }                      
+        });
+
+        if(response.ok)
+        {
+            const data = await response.json();
+            console.log(data);
+            setUser(data);
+        }
+
+        } catch (error) {
+            console.log("Error fetching user data");
+        }
+    }
+
+    useEffect(()=>
+    {
+        userAuthentication()
+    },[]);
+
     return(
-        <AuthContext.Provider value={{ storeTokenInLS, logoutUser, isLoggedIn }}>
+        <AuthContext.Provider value={{ storeTokenInLS, logoutUser, isLoggedIn, user }}>
             {children}
         </AuthContext.Provider>
     )

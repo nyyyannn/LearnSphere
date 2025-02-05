@@ -2,11 +2,16 @@ import { NavLink } from "react-router-dom"; /*special kind of link that knows wh
 or transitioning. Used in place of a tags*/
 import "./Navbar.css"
 import { useAuth } from "../store/Auth";
+import { useState } from "react";
+import { Footer } from "./Footer";
 
 
 export const Navbar = () =>
 {
     const {isLoggedIn} = useAuth();
+
+    
+
     return(
     <>
     <header>
@@ -15,8 +20,9 @@ export const Navbar = () =>
                 <img 
                     src="/images/navbar.png" 
                     alt="3 dots navbar"
-                    width="35"
-                    height="35"/> 
+                    width="30"
+                    height="30"
+                /> 
                 <li><NavLink to="/">LearnSphere</NavLink></li>
             </div>
             <nav>

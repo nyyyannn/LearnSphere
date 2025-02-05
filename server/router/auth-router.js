@@ -14,7 +14,7 @@ const authControllers = require("../controllers/auth-controller");
 const signupSchema = require("../validators/auth-validator");
 const loginSchema = require("../validators/login-validator");
 const validate = require('../middlewares/validate-middleware');
-
+const authMiddleware = require("../middlewares/auth-middleware");
 
 router.route("/").get(authControllers.home);
 /*(req,res) => { 
@@ -26,8 +26,8 @@ router.route("/").get(authControllers.home);
 router
 .route("/register")
 .post(validate(signupSchema),authControllers.register);//using post sends the data to the database
-
-
 router.route("/login").post(validate(loginSchema),authControllers.login);
+
+router.route("/user").get(authMiddleware, authControllers.user);
 
 module.exports = router;//If we want to use the module in another file, we include this statement.
