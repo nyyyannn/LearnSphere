@@ -4,6 +4,7 @@ import { About } from "./pages/About";
 import { Contact } from "./pages/Contact";
 import { Services } from "./pages/Services";
 import { Login } from "./pages/Login";
+import { Logout } from "./pages/Logout";
 import { Register } from "./pages/Register";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
@@ -24,6 +25,7 @@ const App = () => {
         <Route path="/services" element={<Services/>}/>
         <Route path="/register" element={<Register/>}/>
         <Route path="/login" element={<Login/>}/>
+        <Route path="/logout" element={<Logout/>}/>
         <Route path="*" element={<Error/>}/> {/* *=wildcard redirects to the page mentioned in element if the user enters a route other than the ones specified */}
       </Routes>
       <Footer/>

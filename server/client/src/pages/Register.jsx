@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useAuth } from "../store/Auth";
 
 export const Register =  () => {
     
@@ -11,6 +12,8 @@ export const Register =  () => {
     }); {/*state variable, updated function = react hook*/}
 
     const navigate = useNavigate();
+
+    const { storeTokenInLS }= useAuth(); //curly braces included cause we aren't using default export.
 
     //handling the input values
     const handleInput = (e) => //on clicking the input field, we get a event that can be used to get the values
@@ -44,7 +47,7 @@ export const Register =  () => {
         if(response.ok)
         {
             const res_data = await response.json();
-            localStorage.setItem('Token',res_data.token);
+            storeTokenInLS(res_data.token);
             setUser({
                 username:"",
                 email:"",

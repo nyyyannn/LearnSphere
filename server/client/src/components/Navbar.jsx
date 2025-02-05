@@ -1,8 +1,12 @@
 import { NavLink } from "react-router-dom"; /*special kind of link that knows whether or not it is active, pending 
 or transitioning. Used in place of a tags*/
 import "./Navbar.css"
+import { useAuth } from "../store/Auth";
+
+
 export const Navbar = () =>
 {
+    const {isLoggedIn} = useAuth();
     return(
     <>
     <header>
@@ -21,8 +25,12 @@ export const Navbar = () =>
                     <li> <NavLink to="/about"> About </NavLink> </li>
                     <li> <NavLink to="/contact"> Contact </NavLink> </li>
                     <li> <NavLink to="/services"> Services </NavLink> </li>
-                    <li> <NavLink to="/register"> Register </NavLink> </li>
-                    <li> <NavLink to="/login"> Login </NavLink> </li>
+                    {isLoggedIn ? 
+                    <li> <NavLink to="/logout"> Logout </NavLink> </li>:
+                    <>
+                        <li> <NavLink to="/register"> Register </NavLink> </li>
+                        <li> <NavLink to="/login"> Login </NavLink> </li>
+                    </>}
                 </ul>
             </nav>
         </div>
