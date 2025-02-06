@@ -1,4 +1,5 @@
-const {Schema, model, default: mongoose} = require("mongoose");
+const mongoose = require("mongoose");
+const { Schema, model } = mongoose;
 
 const contactSchema = new Schema(
     {
@@ -9,5 +10,5 @@ const contactSchema = new Schema(
 );
 
 //creating a collection
-const Contact = new model('Contact',contactSchema);
+const Contact = model('Contact',contactSchema);
 module.exports = Contact;

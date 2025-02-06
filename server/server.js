@@ -4,9 +4,9 @@ const cors = require("cors"); //To prevent cors error
 const app = express(); //creating an instance of express application
 const authRoute = require("./router/auth-router"); //imports router from the specified location
 const contactRoute = require("./router/contact-router");
+const serviceRoute = require("./router/service-router");
 const connectDb = require("./utils/db");
 const errorMiddleware = require("./middlewares/error-middleware");
-
 
 const corsOptions = {
   origin: "http://localhost:5173", //allows requests only from this URL
@@ -30,6 +30,9 @@ app.use("/api/auth",authRoute); /*Method in express used to mount middleware fun
 "/api/auth" is the base URl where the router will be mounted.*/
  
 app.use("/api/form", contactRoute);
+
+app.use("/api/data", serviceRoute);
+
 
 /*app.get("/", (req,res) => { 
     res.status(200).send('Welcome');

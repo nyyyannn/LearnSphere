@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
+const {Schema, model} = mongoose;
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 //blueprint of the registration form
-const userSchema = new mongoose.Schema({
+const userSchema = new Schema({
     username: {
         type:String,
         required:true,
@@ -35,7 +36,7 @@ userSchema.pre('save', async function(next){
     {
         if(!user.isModified("password"))
         {
-            next();
+            return next();
         }
         const saltRound = await bcrypt.genSalt(10); //higher the value, the more complex and time consuming.
         const hash_password = await bcrypt.hash(user.password, saltRound);
@@ -95,5 +96,5 @@ userSchema.methods.comparePassword = async function (password)
 
 
 //defining a new collection named user with the structure defined in userSchema variable
-const User = new mongoose.model("User", userSchema);
+const User = model("User", userSchema); //Always have singular form of the collection on mongoDB.
 module.exports = User;
