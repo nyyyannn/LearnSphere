@@ -13,7 +13,7 @@ export const Register =  () => {
 
     const navigate = useNavigate();
 
-    const { storeTokenInLS }= useAuth(); //curly braces included cause we aren't using default export.
+    const { storeTokenInLS } = useAuth(); //curly braces included cause we aren't using default export.
 
     //handling the input values
     const handleInput = (e) => //on clicking the input field, we get a event that can be used to get the values

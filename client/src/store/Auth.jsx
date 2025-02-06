@@ -11,8 +11,8 @@ export const AuthContext = createContext(); //returns a component that acts as g
 
 export const AuthProvider = ( {children} ) => //children is any component inside <AuthProvider></AuthProvider>
 {
-    const [token, setToken] = useState(localStorage.getItem('Token'));
-    const [user, setUser] = useState("");
+    const [token, setToken] = useState(localStorage.getItem('Token')); 
+    const [user, setUser] = useState(""); // user contains userdata which is initially empty.
 
     let isLoggedIn = !!token;
 
@@ -24,7 +24,7 @@ export const AuthProvider = ( {children} ) => //children is any component inside
     const logoutUser = () =>
     {
         setToken(""); // resetting the token value
-        return localStorage.removeItem('Token'); // removing the token from local storage    }
+        return localStorage.removeItem('Token'); // removing the token from local storage  
     }
 
 
@@ -43,8 +43,7 @@ export const AuthProvider = ( {children} ) => //children is any component inside
         if(response.ok)
         {
             const data = await response.json();
-            console.log(data);
-            setUser(data);
+            setUser(data.userData); //contains object userData, hence the reason, we use user.userData.email in Contact.jsx
         }
 
         } catch (error) {

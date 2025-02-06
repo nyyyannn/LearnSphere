@@ -11,6 +11,12 @@
     justify-content: center;
     margin-right:auto;
 }
+form textarea
+{
+    padding: 5px;
+    display: flex;
+    width: 700px;
+}
 .left-side-contact
 {
     margin-right:100px;
@@ -38,6 +44,13 @@
     border:none;
     border-radius:30%;
 }
+@media (max-width:760px)
+{
+    form textarea
+    {
+        width:100%;
+    }
+}
 @media (max-width:970px)
 {
     .left-side-contact
@@ -55,4 +68,5 @@
         margin-right:0px;
     }
 }
+
 

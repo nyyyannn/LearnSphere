@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./Contact.css";
 import { useAuth } from "../store/Auth";
+import { useEffect } from "react";
 
 export const Contact = () => {
 
@@ -10,20 +11,22 @@ export const Contact = () => {
         message:""
     });
 
-    const [userData, setUserData] = useState(true);
+    const [userData, setUserData] = useState(true); 
 
-    const { user } = useAuth();
+    const { user } = useAuth(); //gets user data, if it exists, otherwise null
 
-    if(userData && user)
-    {
-        setContact({
-            username: user.userData.username,
-            email: user.userData.email,
-            message: ""
-        })
-
-        setUserData(false)
-    }
+    useEffect(() => {
+        if (user && userData) {
+            setContact({
+                username: user.username,
+                email: user.email,
+                message: ""
+            });
+    
+            setUserData(false); // to prevent infinite re-renders.
+        }
+    }, [user, userData]); // Runs when `user` or `userData` changes
+    
     
     const handleInput = (e) =>
     {
@@ -38,10 +41,35 @@ export const Contact = () => {
         )
     }
     
-    const handleSubmit = (e) =>
+    const handleSubmit = async (e) =>
     {
         e.preventDefault();
-        alert(contact);
+        if(user)
+        {
+            const response = await fetch("http://localhost:5000/api/form/contact", 
+                                        {
+                                            method:"POST",
+                                            headers:
+                                            {
+                                                "Content-Type":"application/json"
+                                            },
+                                            body: JSON.stringify(contact)
+                                        }                           
+            );
+            if(response.ok)
+            {
+                setContact({
+                    username: user.username,
+                    email: user.email,
+                    message: ""
+                })
+            }
+        }
+        else
+        {
+            alert("Please login or create an account to contact us.")
+        }
+
     }
 
 
@@ -107,7 +135,7 @@ export const Contact = () => {
                 Or feel free to drop by!
             </h1>
             <section className="map">
-                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.290907037379!2d77.5606146747054!3d12.889006387418787!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1558f57f244f%3A0x6207554ad7440bac!2sForum%20Mall%20Rd%2C%20Anjanadri%20Layout%2C%20Konanakunte%2C%20Bengaluru%2C%20Karnataka%20560062!5e0!3m2!1sen!2sin!4v1738593472379!5m2!1sen!2sin" width="100%" height="450" allowFullScreen loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3889.290907037379!2d77.5606146747054!3d12.889006387418787!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1558f57f244f%3A0x6207554ad7440bac!2sForum%20Mall%20Rd%2C%20Anjanadri%20Layout%2C%20Konanakunte%2C%20Bengaluru%2C%20Karnataka%20560062!5e0!3m2!1sen!2sin!4v1738593472379!5m2!1sen!2sin" width="100%" height="450" allowFullScreen loading="lazy" referrerPolicy="no-referrer-when-downgrade"></iframe>
             </section>
         </>
     )
