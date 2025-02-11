@@ -1,23 +1,37 @@
+import { useAuth } from "../store/Auth";
+import "./Services.css";
+
 export const Services = () => {
+    const { services } = useAuth();
 
-    const services = async() =>
-    {
-        try {
-                const response = await fetch("http://localhost:5000/api/data/services",
-                {
-                    method:"GET",
-                    headers:{"Content-type":"application/json"}
-                }
-            )
-            if(response.ok)
-            {
-                console.log(response);
-            }
-        } catch (error) {
-            console.log(`Service Error: ${error}`);
-        }
-    }
-
-
-    return <h1>Hello from the Services page</h1>;
-}
+    return (
+        <>
+            <section className="section-services">
+                <div className="service-main-heading">
+                    <h1>Services</h1>
+                </div>
+                <div className="container grid-three-cols">
+                    {services.map((curElem, index) => {
+                        const { service, description } = curElem;
+                        return (
+                            <div className="card" key={index}>
+                                <div className="card-image">
+                                    <img 
+                                        src="/images/services.png" 
+                                        alt="card-image"
+                                        width="300px"
+                                        height="300px" 
+                                    />
+                                </div>
+                                <div className="card-details">
+                                    <h2>{service}</h2>
+                                    <p>{description}</p>
+                                </div>
+                            </div>
+                        );
+                    })}
+                </div>
+            </section>
+        </>
+    );
+};

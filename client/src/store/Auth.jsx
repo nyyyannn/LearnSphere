@@ -13,7 +13,8 @@ export const AuthProvider = ( {children} ) => //children is any component inside
 {
     const [token, setToken] = useState(localStorage.getItem('Token')); 
     const [user, setUser] = useState(""); // user contains userdata which is initially empty.
-
+    const [services, setServices] = useState([]); 
+    
     let isLoggedIn = !!token;
 
     const storeTokenInLS = (serverToken) => {
@@ -51,13 +52,35 @@ export const AuthProvider = ( {children} ) => //children is any component inside
         }
     }
 
+
+    //to fetch services from the database
+    const getServices = async() =>
+    {
+        try {
+                const response = await fetch("http://localhost:5000/api/data/services",
+                {
+                    method:"GET",
+                    headers:{"Content-type":"application/json"}
+                }
+            )
+            if(response.ok)
+            {
+                const data = await response.json();
+                setServices(data.msg);
+            }
+        } catch (error) {
+            console.log(`Service Error: ${error}`);
+        }
+    }
+
     useEffect(()=>
     {
+        getServices();
         userAuthentication()
     },[]);
 
     return(
-        <AuthContext.Provider value={{ storeTokenInLS, logoutUser, isLoggedIn, user }}>
+        <AuthContext.Provider value={{ storeTokenInLS, logoutUser, isLoggedIn, user, services }}>
             {children}
         </AuthContext.Provider>
     )

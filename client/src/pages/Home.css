@@ -9,7 +9,7 @@
 .container-hero-and-image
 {
     display:flex;
-    margin-top: -50px;
+    margin-top:-50px;
 }
 .titles
 {
@@ -110,7 +110,7 @@ h2
 {
     from
     {
-        opcaity:0;
+        opacity:0;
         scale:0.5
     }
     to
@@ -121,6 +121,10 @@ h2
 }
 @media (max-width:970px)
 {
+    .container-hero-and-image
+    {
+        margin:auto;
+    }
     img
     {
         visibility: hidden;
@@ -136,5 +140,15 @@ h2
     .get-started-img
     {
         display: none;
+    }
+    .get-started-today
+    {
+        margin-bottom: 60px;
+        align-items: center;
+        justify-content: center;
+    }
+    .get-started-info
+    {
+        margin-left:0px;
     }
 }

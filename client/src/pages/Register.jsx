@@ -74,8 +74,6 @@ export const Register =  () => {
                         <div className="registration-form">
                             <h1 className="main-heading mb-3">Registration</h1> 
                             <br/>
-
-
                             <form onSubmit = {handleSubmit}> {/*Order should be the same as the one in schema (user-model.js) */}
                                 <div>
                                     <label htmlFor="username">Username: </label>

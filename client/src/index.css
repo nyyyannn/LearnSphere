@@ -173,3 +173,26 @@ footer p
 ::-webkit-scrollbar-thumb:hover {
   background: #294775;
 }
+
+/*Grid*/
+.grid-one-col
+{
+  grid-template-columns: repeat(1, 1fr);
+}
+
+.grid-two-cols
+{
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.grid-three-cols
+{
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  display: grid;
+}
+
+.grid-four-cols
+{
+  grid-template-columns: repeat(4, 1fr);
+}

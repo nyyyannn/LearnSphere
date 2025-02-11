@@ -5,5 +5,13 @@ export const About = () => {
 
     const { user } = useAuth();
 
-    return <h1>Welcome{user.username ? ` ${user.username}!` : ` to LearnSphere!`}</h1>;
+    return(
+        <>
+            <section className="about-section">
+                <div className="container ">
+                        <h1>Welcome{user.username ? ` ${user.username}!` : ` to LearnSphere!`}</h1>;                    
+                    </div>
+            </section>
+        </>
+    )
 }

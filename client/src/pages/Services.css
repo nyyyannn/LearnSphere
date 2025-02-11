@@ -1,0 +1,51 @@
+.section-services
+{
+    margin-bottom:80px;
+}
+.service-main-heading
+{
+    justify-content: center;
+    display: flex;
+    max-width: 140rem;
+    padding: 4rem 2.4rem;
+    margin: 0 auto;
+}
+.card-details
+{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    text-align: left;
+}
+.card {
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.card-image img {
+    width: 100%;
+    height: auto;
+    display: block;
+    object-fit: cover;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width:970px)
+{
+    .card-image
+    {
+        display: block;
+    }
+}
+
