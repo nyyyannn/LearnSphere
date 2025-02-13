@@ -1,6 +1,7 @@
 /*This code is creating an authentication context in React using the Context API.
 The goal is to store an authentication token in the browser's localStorage so that the user stays logged in across page reloads.*/
 
+import { use } from "react";
 import { useEffect } from "react";
 import { createContext, useContext,useState } from "react"; 
 //createContext: Creates a global storage in react where data can be shared across components (prevents prop drilling)
@@ -15,19 +16,20 @@ export const AuthProvider = ( {children} ) => //children is any component inside
     const [user, setUser] = useState(""); // user contains userdata which is initially empty.
     const [services, setServices] = useState([]); 
     
-    let isLoggedIn = !!token;
+    let isLoggedIn = !!token; //converts token to either truthsy or falsly value. If token is non empty sttring, true else false
 
     const storeTokenInLS = (serverToken) => {
+        setToken(serverToken); // setting the token value (to prevent the navbar needing to be refreshed on logging in)
         return localStorage.setItem('Token', serverToken); //saving token in local storage
     };
 
     //Logout Functionality
     const logoutUser = () =>
     {
+        setUser(""); // resetting the user value
         setToken(""); // resetting the token value
-        return localStorage.removeItem('Token'); // removing the token from local storage  
+        return localStorage.removeItem('Token'); // removing the token from local storage 
     }
-
 
     //JWT Authentication - to get currently logged in user data
     const userAuthentication = async () =>
@@ -76,8 +78,12 @@ export const AuthProvider = ( {children} ) => //children is any component inside
     useEffect(()=>
     {
         getServices();
-        userAuthentication()
     },[]);
+
+    useEffect(()=>
+    {
+        userAuthentication();
+    },[token]);
 
     return(
         <AuthContext.Provider value={{ storeTokenInLS, logoutUser, isLoggedIn, user, services }}>

@@ -2,13 +2,13 @@ import { NavLink } from "react-router-dom"; /*special kind of link that knows wh
 or transitioning. Used in place of a tags*/
 import "./Navbar.css"
 import { useAuth } from "../store/Auth";
-import { useState } from "react";
-import { Footer } from "./Footer";
-
+import { useEffect, useState } from "react";
 
 export const Navbar = () =>
 {
     const {isLoggedIn} = useAuth();
+
+
     return(
     <>
     <header>

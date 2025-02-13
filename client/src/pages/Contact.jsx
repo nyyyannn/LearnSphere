@@ -2,6 +2,7 @@ import { useState } from "react";
 import "./Contact.css";
 import { useAuth } from "../store/Auth";
 import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 export const Contact = () => {
 
@@ -63,11 +64,17 @@ export const Contact = () => {
                     email: user.email,
                     message: ""
                 })
+                toast.success("Message sent successfully", {
+                                className: "Toastify",
+                                style: { fontFamily: "Forum, sans-serif", fontSize: "1.8rem" },});
             }
         }
         else
         {
-            alert("Please login or create an account to contact us.")
+            toast.error("Please login to send a message", {
+                            className: "Toastify",
+                            style: { fontFamily: "Forum, sans-serif", fontSize: "1.8rem" },
+                        });
         }
 
     }

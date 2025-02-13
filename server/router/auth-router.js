@@ -26,8 +26,15 @@ router.route("/").get(authControllers.home);
 router
 .route("/register")
 .post(validate(signupSchema),authControllers.register);//using post sends the data to the database
-router.route("/login").post(validate(loginSchema),authControllers.login);
 
-router.route("/user").get(authMiddleware, authControllers.user);
+
+router
+.route("/login")
+.post(validate(loginSchema),authControllers.login); //to validate the login details entered by the user
+
+
+router
+.route("/user")
+.get(authMiddleware, authControllers.user);
 
 module.exports = router;//If we want to use the module in another file, we include this statement.

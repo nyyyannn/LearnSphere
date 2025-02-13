@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/Auth";
+import { toast } from "react-toastify";
 
 export const Login = () => {
 
@@ -38,20 +39,28 @@ export const Login = () => {
                     body:JSON.stringify(user)
                 }
             )
+
+            const res_data = await response.json();
+
             if(response.ok)
                 {
-                    const res_data = await response.json();
                     storeTokenInLS(res_data.token);
-                    alert("Login successful");
                     setUser({
                         email:"",
                         passowrd:"",
                     })
+                    toast.success("Login successful", {
+                        className: "Toastify",
+                        style: { fontFamily: "Forum, sans-serif", fontSize: "1.8rem" },
+                    });
                     navigate("/");
                 }
                 else
                 {
-                    alert("Invalid credentials");
+                    toast.error(res_data.extraDetails ? res_data.extraDetails :res_data.message, {
+                        className: "Toastify",
+                        style: { fontFamily: "Forum, sans-serif", fontSize: "1.8rem" },
+                    }); //Handling invalid input
                 }
         } 
         catch (error) {

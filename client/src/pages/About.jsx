@@ -1,5 +1,5 @@
 import { useAuth } from "../store/Auth";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const About = () => {
 

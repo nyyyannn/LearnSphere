@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/Auth";
+import { toast } from "react-toastify"; 
 
 export const Register =  () => {
     
@@ -32,7 +33,6 @@ export const Register =  () => {
     const handleSubmit = async (e) =>
     {
         e.preventDefault();
-        console.log(user);
 
         const response = await fetch("http://localhost:5000/api/auth/register"//fetch returns a promise (which is type of object)
             //that acts as a placeholder until the data is computed. It is either resolved or rejected
@@ -44,9 +44,11 @@ export const Register =  () => {
             body:JSON.stringify(user), //converts JavaScript Object to JSON
         })
 
+
+        const res_data = await response.json();
+
         if(response.ok)
         {
-            const res_data = await response.json();
             storeTokenInLS(res_data.token);
             setUser({
                 username:"",
@@ -54,7 +56,17 @@ export const Register =  () => {
                 phone:"",
                 password:"",
             })
-            navigate("/login");
+            toast.success("Registration successful", {
+                className: "Toastify",
+                style: { fontFamily: "Forum, sans-serif", fontSize: "1.8rem" },});
+            navigate("/");
+        }
+        else
+        {
+            toast.error(res_data.extraDetails ? res_data.extraDetails :res_data.message, {
+                className: "Toastify",
+                style: { fontFamily: "Forum, sans-serif", fontSize: "1.8rem" },
+            }); //Handling invalid input
         }
     }
     
