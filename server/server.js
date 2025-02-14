@@ -5,6 +5,7 @@ const app = express(); //creating an instance of express application
 const authRoute = require("./router/auth-router"); //imports router from the specified location
 const contactRoute = require("./router/contact-router");
 const serviceRoute = require("./router/service-router");
+const adminRoute = require("./router/admin-router");
 const connectDb = require("./utils/db");
 const errorMiddleware = require("./middlewares/error-middleware");
 
@@ -27,11 +28,13 @@ for all subsequent route handlers. express.json() is the middleware here.*/
 
 //Mount the router: To use the router in your main Express app, you can "mount" it at specific URL prefix.
 app.use("/api/auth",authRoute); /*Method in express used to mount middleware functions at specific path.
-"/api/auth" is the base URl where the router will be mounted.*/
+"/api/auth" is the base URl where the router will be mounted. It goes to the file in authRoute (auth-router.js) and gets the route (for example: /login) */
  
-app.use("/api/form", contactRoute);
+app.use("/api/form", contactRoute); //gets /contact route
 
-app.use("/api/data", serviceRoute);
+app.use("/api/data", serviceRoute); //gets /services route
+
+app.use("/api/admin",adminRoute); //gets /users route
 
 
 /*app.get("/", (req,res) => { 
