@@ -1,0 +1,103 @@
+/* General styles */
+.admin-page {
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+}
+
+.adminHeading {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 40px;
+    font-weight: bold;
+    margin-top:-30px;
+}
+
+.admin-users {
+    width: 100%;
+    max-width: 900px;
+    background: #fff;
+    padding: 20px;
+    border-radius: 30px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Table styles */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    text-align: center;
+    font-size:20px;
+}
+
+thead {
+    background: var(--btn-color);
+    color: white;
+}
+
+th, td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+    border-left: 1px solid #ddd;
+    margin:auto;
+}
+
+.delete-button
+{
+    margin:auto;
+    background-color: red;
+}
+.edit-button
+{
+    margin:auto;
+    background-color: rgb(68, 202, 68);
+}
+
+th {
+    text-transform: uppercase;
+}
+
+tbody tr:hover {
+    background: #f1f1f1;
+}
+
+td {
+    text-align: center;
+}
+
+@media (max-width: 970px) {
+    table, thead, tbody, th, td, tr {
+        display: block;
+    }
+
+    thead tr {
+        display: none;
+    }
+
+    tr {
+        margin-bottom: 10px;
+        border: 1px solid #ddd;
+        padding: 10px;
+        background: #f9f9f9;
+    }
+
+    td {
+        text-align: center;
+    }
+    .delete-button
+    {
+        justify-content: center;
+    }
+
+    td::before {
+        content: attr(data-label);
+        position: absolute;
+        font-weight: bold;
+        text-transform: uppercase;
+    }
+}

@@ -23,7 +23,6 @@ const authMiddleware = async (req, res, next) => //passing next is a must! to mo
         const userData = await User.
                                 findOne({ email : isVerified.email }).
                                 select({ password: 0});//to check the collection and find a user with a matching email and remove the password from the data received
-        console.log(userData);
 
         req.user = userData;
         req.token = token;

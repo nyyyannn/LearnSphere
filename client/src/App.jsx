@@ -9,6 +9,10 @@ import { Register } from "./pages/Register";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { Error } from "./pages/Error";
+import { AdminLayout } from "./components/layouts/Admin-Layout";
+import { AdminContacts } from "./pages/Admin-Contacts";
+import { AdminUsers } from "./pages/Admin-Users";
+import { AdminUpdate } from "./pages/AdminUpdate";
 
 //BrowserRouter: Used to keep the UI in sync with the URL.
 //Route: Void element with no opening tag. 
@@ -27,6 +31,11 @@ const App = () => {
         <Route path="/login" element={<Login/>}/>
         <Route path="/logout" element={<Logout/>}/>
         <Route path="*" element={<Error/>}/> {/* *=wildcard redirects to the page mentioned in element if the user enters a route other than the ones specified */}
+        <Route path="/admin" element={<AdminLayout/>}>
+          <Route path="users" element={<AdminUsers/>}/>
+          <Route path="contacts" element={<AdminContacts/>}/>
+          <Route path="users/:id/edit" element={<AdminUpdate/>}/>
+        </Route>
       </Routes>
       <Footer/>
     </BrowserRouter>

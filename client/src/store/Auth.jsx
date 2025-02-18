@@ -15,6 +15,7 @@ export const AuthProvider = ( {children} ) => //children is any component inside
     const [token, setToken] = useState(localStorage.getItem('Token')); 
     const [user, setUser] = useState(""); // user contains userdata which is initially empty.
     const [services, setServices] = useState([]); 
+    const authorizationToken = `Bearer ${token}`; //storing token in a variable;
     
     let isLoggedIn = !!token; //converts token to either truthsy or falsly value. If token is non empty sttring, true else false
 
@@ -39,7 +40,7 @@ export const AuthProvider = ( {children} ) => //children is any component inside
                                     method:"GET",
                                     headers:
                                     {
-                                        Authorization:`Bearer ${token}`
+                                        Authorization:authorizationToken
                                     }                      
         });
 
@@ -86,7 +87,12 @@ export const AuthProvider = ( {children} ) => //children is any component inside
     },[token]);
 
     return(
-        <AuthContext.Provider value={{ storeTokenInLS, logoutUser, isLoggedIn, user, services }}>
+        <AuthContext.Provider value={{ storeTokenInLS, 
+                                        logoutUser, 
+                                        isLoggedIn, 
+                                        user, 
+                                        services,
+                                        authorizationToken }}>
             {children}
         </AuthContext.Provider>
     )
