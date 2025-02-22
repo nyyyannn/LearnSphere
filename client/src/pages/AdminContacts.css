@@ -1,0 +1,104 @@
+.admin-contacts-wrapper {
+    max-width: 1200px;
+    margin: 2rem auto;
+    padding: 0 1rem;
+    margin-bottom: 100px;
+  }
+  
+  .admin-contacts-container {
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    overflow: hidden;
+  }
+  
+  .contact-header {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 2fr 0.5fr;
+    gap: 1rem;
+    padding: 1rem;
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #e9ecef;
+  }
+  
+  .contact-header p {
+    font-weight: 600;
+    color: #343a40;
+    margin: 0;
+  }
+  
+  .contact-box {
+    display: grid;
+    grid-template-columns: 1fr 1.5fr 2fr 0.5fr;
+    gap: 1rem;
+    padding: 1rem;
+    border-bottom: 1px solid #e9ecef;
+    align-items: center;
+  }
+  
+  .contact-username p,
+  .contact-email p,
+  .contact-message p {
+    margin: 0;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .contact-message p {
+    max-height: 3.6em;
+    line-height: 1.2;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+  }
+  
+  .delete-btn {
+    background-color: red;
+    color: white;
+    cursor: pointer;
+  }
+  
+  
+  /* Responsive styles */
+  @media (max-width: 570px) {
+    .contact-header {
+      display: none; /* Hide headers on mobile */
+    }
+  
+    .contact-box {
+      grid-template-columns: 1fr;
+      gap: 0.5rem;
+      padding: 1rem;
+    }
+  
+    .contact-username,
+    .contact-email,
+    .contact-message {
+      padding: 0.25rem 0;
+    }
+  
+    .contact-username::before {
+      content: "Username: ";
+      font-weight: 600;
+    }
+  
+    .contact-email::before {
+      content: "Email: ";
+      font-weight: 600;
+    }
+  
+    .contact-message::before {
+      content: "Message: ";
+      font-weight: 600;
+    }
+  
+    .delete-btn {
+      width: 80px;
+      margin-top: 0.5rem;
+    }
+  
+    .contact-message p {
+      max-height: none;
+      -webkit-line-clamp: unset;
+    }
+  }

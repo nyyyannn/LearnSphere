@@ -6,6 +6,7 @@ const {getAllMessages} = require("../controllers/admin-controller");
 const {deleteUserById} = require("../controllers/admin-controller");
 const {getUserById} = require("../controllers/admin-controller");
 const {updateUserById} = require("../controllers/admin-controller");
+const {deleteContactById} = require("../controllers/admin-controller");
 
 const authMiddleware = require("../middlewares/auth-middleware");
 const adminMiddleware = require("../middlewares/admin-middleware");
@@ -17,5 +18,6 @@ router.route("/contact").get(authMiddleware, adminMiddleware, getAllMessages); /
 router.route("/users/:id").get(authMiddleware, adminMiddleware,getUserById )
 router.route("/users/delete/:id").delete(authMiddleware, adminMiddleware, deleteUserById);
 router.route("/users/update/:id").patch(authMiddleware, adminMiddleware, updateUserById);
+router.route("/contact/delete/:id").delete(authMiddleware, adminMiddleware, deleteContactById);
 
 module.exports = router;

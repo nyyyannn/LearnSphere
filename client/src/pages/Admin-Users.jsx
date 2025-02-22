@@ -21,7 +21,7 @@ export const AdminUsers = () =>
                 }
             )
             const data = await response.json(response);
-            setUsers(data);
+            setUsers(data.filter(data => data.isAdmin !== true)); //removing admin to remove accidental deletion 
         }   
         catch(error)
         {
@@ -49,6 +49,9 @@ export const AdminUsers = () =>
             if(response.ok)
             {
                 getAllUserData(); //to prevent the need to refresh after deleting a user
+                toast.success("Deletion successful", {
+                                className: "Toastify",
+                                style: { fontFamily: "Forum, sans-serif", fontSize: "1.8rem" },});
             }
         }   
         catch(error)

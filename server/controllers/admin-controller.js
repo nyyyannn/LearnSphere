@@ -29,7 +29,7 @@ const getAllMessages = async(req, res, next) =>
         {
             return res.status(404).json({message:"No messages found"});
         }
-        return res.status(200).json(messages)
+        return res.status(200).json(messages);
     }
     catch(error)
     {
@@ -39,6 +39,7 @@ const getAllMessages = async(req, res, next) =>
 
 const getUserById = async(req, res, next) =>
 {
+    console.log("Requested ID:", req.params.id); // Debugging 
     try
     {
         const id = req.params.id;
@@ -82,4 +83,18 @@ const updateUserById = async(req, res, next) =>
     }
 }
 
-module.exports = { getAllUsers, getAllMessages, deleteUserById, getUserById, updateUserById} ;
+const deleteContactById = async (req, res, next) =>
+{
+    try
+    {
+        const id = req.params.id; //because the url has the id, we use this (check admin router URL defined for deleting a user)
+        await Contact.deleteOne({_id:id});
+        return res.status(200).json({message: "Message deleted successfully"});
+    }
+    catch(error)
+    {
+        next(error);
+    }
+}
+
+module.exports = { getAllUsers, getAllMessages, deleteUserById, deleteContactById, getUserById, updateUserById} ;
