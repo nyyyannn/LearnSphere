@@ -93,7 +93,7 @@ button
     font-size: large;
     display: flex;
     justify-content: center;
-    margin: 20px;
+    margin:20px;
     border: solid transparent;
     letter-spacing: 0.2rem;
 }
@@ -184,6 +184,7 @@ footer p
 .grid-one-col
 {
   grid-template-columns: repeat(1, 1fr);
+  
 }
 
 .grid-two-cols
@@ -209,3 +210,16 @@ footer p
   flex-direction: column;
   justify-self: center;
 }
+
+.register-btn 
+{
+  margin-right: auto;
+  margin-left: auto;
+}
+
+.login-btn
+{
+  margin-right: auto;
+  margin-left: auto;
+}
+

@@ -1,7 +1,6 @@
 /*This code is creating an authentication context in React using the Context API.
 The goal is to store an authentication token in the browser's localStorage so that the user stays logged in across page reloads.*/
 
-import { use } from "react";
 import { useEffect } from "react";
 import { createContext, useContext,useState } from "react"; 
 //createContext: Creates a global storage in react where data can be shared across components (prevents prop drilling)
@@ -14,10 +13,14 @@ export const AuthProvider = ( {children} ) => //children is any component inside
 {
     const [token, setToken] = useState(localStorage.getItem('Token')); 
     const [user, setUser] = useState(""); // user contains userdata which is initially empty.
+    const [isLoading, setIsLoading] = useState(true); //stay in loading state until you get the data (check userAuthenticaion function)
     const [services, setServices] = useState([]); 
     const authorizationToken = `Bearer ${token}`; //storing token in a variable;
     
-    let isLoggedIn = !!token; //converts token to either truthsy or falsly value. If token is non empty sttring, true else false
+    const API = import.meta.env.VITE_APP_URI_API;
+    console.log(API);
+
+    let isLoggedIn = !!token; //converts token to either truthsy or falsly value. If token is non empty string, true else false
 
     const storeTokenInLS = (serverToken) => {
         setToken(serverToken); // setting the token value (to prevent the navbar needing to be refreshed on logging in)
@@ -36,18 +39,24 @@ export const AuthProvider = ( {children} ) => //children is any component inside
     const userAuthentication = async () =>
     {
         try {
-            const response = await fetch("http://localhost:5000/api/auth/user", {
+            setIsLoading(true);
+            const response = await fetch(`${API}/api/auth/user`, {
                                     method:"GET",
                                     headers:
                                     {
                                         Authorization:authorizationToken
                                     }                      
         });
-
         if(response.ok)
         {
             const data = await response.json();
             setUser(data.userData); //contains object userData, hence the reason, we use user.userData.email in Contact.jsx
+            setIsLoading(false); 
+        }
+        else
+        {
+            console.error("Error fetching user data");
+            setIsLoading(false);
         }
 
         } catch (error) {
@@ -60,7 +69,7 @@ export const AuthProvider = ( {children} ) => //children is any component inside
     const getServices = async() =>
     {
         try {
-                const response = await fetch("http://localhost:5000/api/data/services",
+                const response = await fetch(`${API}/api/data/services`,
                 {
                     method:"GET",
                     headers:{"Content-type":"application/json"}
@@ -92,7 +101,9 @@ export const AuthProvider = ( {children} ) => //children is any component inside
                                         isLoggedIn, 
                                         user, 
                                         services,
-                                        authorizationToken }}>
+                                        authorizationToken,
+                                        isLoading,
+                                        API }}>
             {children}
         </AuthContext.Provider>
     )
@@ -104,7 +115,7 @@ export const useAuth = () => //function allows any component to access authetica
     const authContextValue = useContext(AuthContext); //grabs the authetication functions from AuthProvider.
     if(!authContextValue)
     {
-        throw new error("useAuth used outside of Provider");
+        throw new Error("useAuth used outside of Provider");
     }
     return authContextValue;
 }

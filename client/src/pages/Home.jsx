@@ -1,6 +1,10 @@
 import "./Home.css";
+import { useAuth } from "../store/Auth";
 
 export const Home = () => {
+
+    const {isLoggedIn} = useAuth();
+
     return(
         <> 
             <main>
@@ -17,11 +21,16 @@ export const Home = () => {
                                             Explore Courses
                                         </button>
                                     </a>
+                                    {isLoggedIn ? <a href="/services">
+                                        <button>
+                                            View Services
+                                        </button>
+                                    </a>:
                                     <a href="/register">
                                         <button>
                                             Sign up
                                         </button>
-                                    </a>
+                                    </a>}
                                 </div>
                                 <h2>Join over 300k learners worldwide.</h2>
                         </div>

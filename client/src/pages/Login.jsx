@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../store/Auth";
 import { toast } from "react-toastify";
+import "./Login.css";
 
 export const Login = () => {
 
@@ -12,7 +13,7 @@ export const Login = () => {
 
     const navigate = useNavigate();
 
-    const { storeTokenInLS } = useAuth();
+    const { storeTokenInLS, API } = useAuth();
 
     const handleInput = (e) =>
     {
@@ -29,7 +30,7 @@ export const Login = () => {
     {
         e.preventDefault();
         try {
-            const response = await fetch("http://localhost:5000/api/auth/login",
+            const response = await fetch(`${API}/api/auth/login`,
                 {
                     method:"POST",
                     headers:
@@ -72,17 +73,9 @@ export const Login = () => {
     <section>
         <main>
             <div className="section-login">
-                <div className="container grid grid-two-cols">
-                    <div className="login-image">
-                        <img 
-                            src="/images/login.jpg"
-                            alt="login form"
-                            width="400"
-                            height="500"
-                        />
-                    </div>
+                <div className="container">
                     <div className="login-form">
-                        <h1 className="main-heading">Login</h1>
+                        <h1 className>Login</h1>
                         <br/>
                         <form onSubmit={handleSubmit}>
                             <div>
@@ -111,9 +104,14 @@ export const Login = () => {
                                     onChange={handleInput}
                                 />
                             </div>
-                            <button>
+                            <button className="login-btn">
                                 Login
                             </button>
+                            <div className="signedup">
+                                <p>New here?
+                                    <a href="/login" className="signeduplogin"> Sign Up! </a>
+                                </p>
+                            </div>
                         </form>
                     </div>
                 </div>

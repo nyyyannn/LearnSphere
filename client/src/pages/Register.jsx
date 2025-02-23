@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../store/Auth";
 import { toast } from "react-toastify"; 
+import "./Register.css";
 
 export const Register =  () => {
     
@@ -14,7 +15,7 @@ export const Register =  () => {
 
     const navigate = useNavigate();
 
-    const { storeTokenInLS } = useAuth(); //curly braces included cause we aren't using default export.
+    const { storeTokenInLS, API } = useAuth(); //curly braces included cause we aren't using default export.
 
     //handling the input values
     const handleInput = (e) => //on clicking the input field, we get a event that can be used to get the values
@@ -34,7 +35,7 @@ export const Register =  () => {
     {
         e.preventDefault();
 
-        const response = await fetch("http://localhost:5000/api/auth/register"//fetch returns a promise (which is type of object)
+        const response = await fetch(`${API}/api/auth/register`//fetch returns a promise (which is type of object)
             //that acts as a placeholder until the data is computed. It is either resolved or rejected
         ,{ // this is an options object that contains details related to HTTP request (method, body, header, etc)
             method:"POST",
@@ -74,20 +75,12 @@ export const Register =  () => {
         <section>
             <main>
                 <div className="section-registration">
-                    <div className="container grid grid-two-cols">
-                        <div className="registration-image">
-                            <img 
-                                src="/images/duck.gif" 
-                                alt="register form"
-                                width="600" 
-                                height="600"
-                            />
-                        </div> 
+                    <div className="container">
                         <div className="registration-form">
-                            <h1 className="main-heading mb-3">Registration</h1> 
                             <br/>
-                            <form onSubmit = {handleSubmit}> {/*Order should be the same as the one in schema (user-model.js) */}
+                            <form onSubmit = {handleSubmit} className="register-form"> {/*Order should be the same as the one in schema (user-model.js) */}
                                 <div>
+                                    <h1 className="main-heading">Registration</h1> 
                                     <label htmlFor="username">Username: </label>
                                     <input 
                                         type="text" 
@@ -140,14 +133,18 @@ export const Register =  () => {
                                         value = {user.password}
                                         onChange = {handleInput} 
                                     />
-                                </div>
-                                
+                                </div>                                
                                 <br/>
-                                <button type="submit" className="btn btn-submit">
-                                    Register Now
+                                <button type="submit" className="register-btn">
+                                    Sign Up
                                 </button>
+                                <div className="signedup">
+                                    <p>Already signed up? 
+                                        <a href="/login" className="signeduplogin"> Login </a>
+                                    </p>
+                                </div>
                             </form>
-                        </div>  
+                        </div>    
                     </div>
                 </div>
             </main>

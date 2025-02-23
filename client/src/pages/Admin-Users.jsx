@@ -1,18 +1,19 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useAuth } from "../store/Auth";
+import { toast } from "react-toastify";
 import "./Admin-Users.css";
 
 export const AdminUsers = () =>
 {
     const [users, setUsers] = useState([]);
-    const {authorizationToken} = useAuth();
+    const {authorizationToken, API} = useAuth();
 
     const getAllUserData = async() =>
     {
         try
         {
-            const response = await fetch(`http://localhost:5000/api/admin/users`,
+            const response = await fetch(`${API}/api/admin/users`,
                 {
                     method:"GET",
                     headers:{
@@ -38,7 +39,7 @@ export const AdminUsers = () =>
     {
         try
         {
-            const response = await fetch(`http://localhost:5000/api/admin/users/delete/${id}`,
+            const response = await fetch(`${API}/api/admin/users/delete/${id}`,
                 {
                     method:"DELETE",
                     headers:{

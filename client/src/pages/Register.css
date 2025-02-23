@@ -1,0 +1,33 @@
+.main-heading
+{
+  margin-top:-30px;
+  margin-bottom: 30px;
+}
+.register-form
+{
+  border: 3px solid whitesmoke;
+  padding: 40px;
+  box-shadow: 10px 10px 1px whitesmoke;
+  margin-bottom: 60px;
+  margin-top: -40px;
+}
+.section-registration
+{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+}
+.signedup
+{
+  display:flex;
+  justify-content: center;
+  align-items: center;
+  margin-top:-10px;
+  margin-bottom: -20px;
+}
+.signedup p, .signeduplogin
+{
+  color: black;
+  margin-left: 5px;
+  font-size: 15px;
+}

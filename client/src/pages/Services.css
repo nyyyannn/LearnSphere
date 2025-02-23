@@ -29,7 +29,7 @@
     transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
 }
 
-.card-image img {
+.cardimg {
     width: 100%;
     height: auto;
     display: block;
@@ -42,10 +42,33 @@
 }
 
 @media (max-width:970px)
-{
-    .card-image
-    {
-        display: none;
+{ 
+    .card-image{
+        display: flex !important;
+        visibility: visible !important;
+        justify-content: center;
     }
+
+    .cardimg
+    {
+        display: flex !important;
+        visibility: visible !important;
+        width:50%;
+        height:50%;
+    }
+      
+    .section-services
+    {
+        display:flex;
+        flex-direction: column;
+    }
+    
+    .container.grid-three-cols {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center cards in column layout */
+    }
+
 }
+
 

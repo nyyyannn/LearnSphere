@@ -8,7 +8,6 @@ export const Navbar = () =>
 {
     const {isLoggedIn} = useAuth();
 
-
     return(
     <>
     <header>

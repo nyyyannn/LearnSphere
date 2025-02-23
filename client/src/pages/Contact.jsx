@@ -14,7 +14,7 @@ export const Contact = () => {
 
     const [userData, setUserData] = useState(true); 
 
-    const { user } = useAuth(); //gets user data, if it exists, otherwise null
+    const { user, API } = useAuth(); //gets user data, if it exists, otherwise null
 
     useEffect(() => {
         if (user && userData) {
@@ -47,7 +47,7 @@ export const Contact = () => {
         e.preventDefault();
         if(user)
         {
-            const response = await fetch("http://localhost:5000/api/form/contact", 
+            const response = await fetch(`${API}/api/form/contact`, 
                                         {
                                             method:"POST",
                                             headers:

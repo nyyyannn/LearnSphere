@@ -15,13 +15,13 @@ export const AdminUpdate = () =>
     );
 
     const params = useParams();
-    const {authorizationToken} = useAuth();
+    const {authorizationToken, API} = useAuth();
 
     const getSingleUserData = async () =>
     {
         try
         {
-            const response = await fetch(`http://localhost:5000/api/admin/users/${params.id}`,
+            const response = await fetch(`${API}/api/admin/users/${params.id}`,
                 {
                     method:"GET",
                     headers:{
@@ -62,7 +62,7 @@ export const AdminUpdate = () =>
         e.preventDefault();
         try
         {
-            const response = await fetch(`http://localhost:5000/api/admin/users/update/${params.id}`,
+            const response = await fetch(`${API}/api/admin/users/update/${params.id}`,
                 {
                     method:"PATCH",
                     headers:{

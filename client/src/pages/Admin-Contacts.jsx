@@ -5,11 +5,11 @@ import "./AdminContacts.css";
 
 export const AdminContacts = () => {
     const [contactData, setContactData] = useState([]);
-    const { authorizationToken } = useAuth();
+    const { authorizationToken, API } = useAuth();
 
     const getContactsData = async () => {
         try {
-            const response = await fetch(`http://localhost:5000/api/admin/contact`, {
+            const response = await fetch(`${API}/api/admin/contact`, {
                 method: "GET",
                 headers: {
                     Authorization: authorizationToken,
@@ -26,7 +26,7 @@ export const AdminContacts = () => {
 
     const deleteContact = async (id) => {
         try {
-            const response = await fetch(`http://localhost:5000/api/admin/contact/delete/${id}`, {
+            const response = await fetch(`${API}/api/admin/contact/delete/${id}`, {
                 method: "DELETE",
                 headers: {
                     Authorization: authorizationToken,

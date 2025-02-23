@@ -17,6 +17,7 @@ export const Services = () => {
                             <div className="card" key={index}>
                                 <div className="card-image">
                                     <img 
+                                        className="cardimg"
                                         src="/images/services.png" 
                                         alt="card-image"
                                         width="300px"
