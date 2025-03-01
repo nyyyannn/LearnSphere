@@ -109,7 +109,7 @@ export const Login = () => {
                             </button>
                             <div className="signedup">
                                 <p>New here?
-                                    <a href="/login" className="signeduplogin"> Sign Up! </a>
+                                    <a href="/register" className="signeduplogin"> Sign Up! </a>
                                 </p>
                             </div>
                         </form>

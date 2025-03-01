@@ -6,8 +6,9 @@
 .register-form
 {
   border: 3px solid whitesmoke;
+  border-radius: 20px;
+  box-shadow: 10px 10px 5px rgb(206, 204, 204);
   padding: 40px;
-  box-shadow: 10px 10px 1px whitesmoke;
   margin-bottom: 60px;
   margin-top: -40px;
 }

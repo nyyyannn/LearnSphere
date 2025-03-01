@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Staatliches&display=swap');
+
+.container.about
+{
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 0px;
+}
+.why-choose-us
+{
+    display: flex;
+    flex-direction: column;
+    margin-top:20px;
+}
+.heading
+{
+    text-align: left;
+}
+.points
+{
+    text-align: justify;
+    margin: 15px;
+}
+.points:last-child
+{
+    margin-bottom: 50px;
+}
+.picture
+{
+    margin-top: 50px;
+}
+.container.reviews
+{
+    margin-bottom: 400px;
+}
+
+
+body {
+	margin:0;
+	background:#15151e;
+	overflow-x:hidden;
+}
+
+
+
+.testimonials {
+	width:fit-content;
+	display:flex;
+	flex-wrap:nowrap;
+}
+
+.testimonial h2 {
+	font-family: 'Staatliches', cursive;
+	font-size:30vw;
+	flex-shrink:0;
+	padding-right:0.3em;
+	padding-left:0.3em;
+	color:#e10600;
+	
+	margin:0;	
+}
+
+.testimonial h2:last-of-type {
+	background:#e1e1ff;
+}
+
+.lightBG {
+	background:#313143;
+}
+
+.space-20vh {
+	height:20vh;
+}
+
+.space-30vh {
+	height:30vh;
+}
+
+.space-50vh {
+	height:50vh;
+}
+
+.space-100vh {
+	height:100vh;
+}
+@media (max-width:970px)
+{
+    .container.about-section
+    {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;        
+    }
+    .picture
+    {
+        display: none;
+    }
+}
