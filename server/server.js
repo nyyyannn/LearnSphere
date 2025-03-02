@@ -4,6 +4,7 @@ const cors = require("cors"); //To prevent cors error
 const app = express(); //creating an instance of express application
 const authRoute = require("./router/auth-router"); //imports router from the specified location
 const contactRoute = require("./router/contact-router");
+const addCourseRoute = require("./router/course-router");
 const serviceRoute = require("./router/service-router");
 const adminRoute = require("./router/admin-router");
 const connectDb = require("./utils/db");
@@ -33,6 +34,8 @@ app.use("/api/auth",authRoute); /*Method in express used to mount middleware fun
 app.use("/api/form", contactRoute); //gets /contact route
 
 app.use("/api/data", serviceRoute); //gets /services route
+
+app.use("/api/form", addCourseRoute);
 
 app.use("/api/admin",adminRoute); //gets /users route
 
