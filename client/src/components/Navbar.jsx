@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Outlet } from "react-router-dom";
 import "./Navbar.css";
 import { useAuth } from "../store/Auth";
 import { useState } from "react";
@@ -33,7 +33,10 @@ export const Navbar = () => {
                             <li onClick={() => setMenuOpen(false)} > <NavLink to="/contact"> Contact </NavLink> </li>
                             <li onClick={() => setMenuOpen(false)} > <NavLink to="/services"> Services </NavLink> </li>
                             {isLoggedIn ? 
-                            <li onClick={() => setMenuOpen(false)} > <NavLink to="/logout"> Logout </NavLink> </li> :
+                            <>
+                            <li onClick={()=> setMenuOpen(false)}> <NavLink to="/courses"> Courses </NavLink> </li>
+                            <li onClick={() => setMenuOpen(false)} > <NavLink to="/logout"> Logout </NavLink> </li>
+                            </> :
                             <>
                                 <li onClick={() => setMenuOpen(false)} > <NavLink to="/register"> Register </NavLink> </li>
                                 <li onClick={() => setMenuOpen(false)} > <NavLink to="/login"> Login </NavLink> </li>
@@ -42,6 +45,7 @@ export const Navbar = () => {
                     </nav>
                 </div>
             </header>
+            <Outlet></Outlet>
         </>
     );
 };

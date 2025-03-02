@@ -14,7 +14,7 @@ const services = async (req,res) =>
     }
     catch(error)
     {
-        console.log(`Services: ${error}`);
+        console.log(`Services error: ${error}`);
     }
 }
 

@@ -12,25 +12,33 @@ export const Home = () => {
                    <div className="container-hero-and-image">
                         <div className="left-side">
                                 <div className="titles">
-                                    <h1>Unlock your potential with Expert-led Courses</h1>
-                                    <h2>Learn at your own pace</h2>
+                                    <h1>Empower, Learn, Teach – All in One Place!</h1>
+                                    <h2>At no cost! (except yout time)</h2>
                                 </div>
                                 <div className="buttons">
-                                    <a href="/">
-                                        <button>
-                                            Explore Courses
-                                        </button>
-                                    </a>
-                                    {isLoggedIn ? <a href="/services">
+                                    {isLoggedIn ? <><a href="/services">
                                         <button>
                                             View Services
                                         </button>
-                                    </a>:
-                                    <a href="/register">
+                                    </a>
+                                    <a href="/courses">
                                         <button>
-                                            Sign up
+                                            Explore courses
                                         </button>
-                                    </a>}
+                                    </a>
+                                    </>
+                                    :
+                                    <><a href="/services">
+                                    <button>
+                                        View Services
+                                    </button>
+                                </a>
+                
+                                <a href="/register">
+                                    <button>
+                                        Sign up
+                                    </button>
+                                </a></>}
                                 </div>
                                 <h2>Join over 300k learners worldwide.</h2>
                         </div>

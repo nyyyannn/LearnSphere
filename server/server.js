@@ -4,7 +4,8 @@ const cors = require("cors"); //To prevent cors error
 const app = express(); //creating an instance of express application
 const authRoute = require("./router/auth-router"); //imports router from the specified location
 const contactRoute = require("./router/contact-router");
-const addCourseRoute = require("./router/course-router");
+const courses = require("./router/courses-router");
+const addCourseRoute = require("./router/addCourse-router");
 const serviceRoute = require("./router/service-router");
 const adminRoute = require("./router/admin-router");
 const connectDb = require("./utils/db");
@@ -35,7 +36,9 @@ app.use("/api/form", contactRoute); //gets /contact route
 
 app.use("/api/data", serviceRoute); //gets /services route
 
-app.use("/api/form", addCourseRoute);
+app.use("/api/data", courses); //gets /courses route
+
+app.use("/api/form", addCourseRoute); //adding courses route
 
 app.use("/api/admin",adminRoute); //gets /users route
 

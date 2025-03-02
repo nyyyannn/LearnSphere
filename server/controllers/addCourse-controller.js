@@ -1,6 +1,6 @@
 const Course = require("../models/course-model");
 
-const courseForm = async(req, res) =>
+const addCourseForm = async(req, res) =>
 {
     try
     {
@@ -14,4 +14,4 @@ const courseForm = async(req, res) =>
     }
 };
 
-module.exports = courseForm;
+module.exports = addCourseForm;

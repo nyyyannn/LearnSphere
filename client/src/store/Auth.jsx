@@ -15,6 +15,7 @@ export const AuthProvider = ( {children} ) => //children is any component inside
     const [user, setUser] = useState(""); // user contains userdata which is initially empty.
     const [isLoading, setIsLoading] = useState(true); //stay in loading state until you get the data (check userAuthenticaion function)
     const [services, setServices] = useState([]); 
+    const [courses, setCourses] = useState([]);
     const authorizationToken = `Bearer ${token}`; //storing token in a variable;
     
     const API = import.meta.env.VITE_APP_URI_API;
@@ -85,9 +86,32 @@ export const AuthProvider = ( {children} ) => //children is any component inside
         }
     }
 
+    const getCourses = async(req,res) =>
+    {
+        try
+        {
+            const response = await fetch(`${API}/api/data/courses`,
+                {
+                    method:"GET",
+                    headers: {"content-type":"application/json"}
+                }
+            )
+            if(response.ok)
+            {
+                const data = await response.json();
+                setCourses(data.msg);
+            }
+        }
+        catch(error)
+        {
+            console.log(`Courses error:${error}`);
+        }
+    }
+
     useEffect(()=>
     {
         getServices();
+        getCourses();
     },[]);
 
     useEffect(()=>
@@ -103,6 +127,7 @@ export const AuthProvider = ( {children} ) => //children is any component inside
                                         services,
                                         authorizationToken,
                                         isLoading,
+                                        courses,
                                         API }}>
             {children}
         </AuthContext.Provider>
