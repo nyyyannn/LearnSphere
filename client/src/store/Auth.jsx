@@ -128,7 +128,8 @@ export const AuthProvider = ( {children} ) => //children is any component inside
                                         authorizationToken,
                                         isLoading,
                                         courses,
-                                        API }}>
+                                        API,
+                                     }}>
             {children}
         </AuthContext.Provider>
     )

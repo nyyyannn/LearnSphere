@@ -7,7 +7,10 @@ const courseSchema = new Schema(
         duration: {type: String, required: true},
         description: {type: String, required: true},
         level: {type: String, required: true},
-        url: {type:String, required: true}
+        url: {type:String, required: true},
+        syllabus: {type: String, required: true},
+        prerequisites: {type: String, required: true},
+        user:{type: String, required: true},
     }
 );
 

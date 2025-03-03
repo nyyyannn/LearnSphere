@@ -1,21 +1,24 @@
-import { useState } from "react";
-import "./AddCourses.css";
+import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
 import { useAuth } from "../store/Auth";
-import {useEffect} from "react";
 
 export const AddCourses = () =>
 {
+
+    const { user, API } = useAuth(); 
+
     const [courseData, setCourseData] = useState({
         name:"",
         duration:"",
         description:"",
         level: "",
-        url:""
+        url:"",
+        syllabus:"",
+        prerequisites:"",
+        user:user.username
     });
 
-
-    const { user, API } = useAuth(); 
+    
 
     const handleInput = (e) =>
     {
@@ -52,7 +55,10 @@ export const AddCourses = () =>
                     duration:"",
                     description: "",
                     level: "",
-                    url:""
+                    url:"",
+                    syllabus: "",
+                    prerequisites:"",
+                    user:user.username
                 })
                 toast.success("Course posted successfully", {
                     className: "Toastify",
@@ -69,13 +75,15 @@ export const AddCourses = () =>
     }
     
 
-    return(
+    return (
         <>
-            <div className="section-registration">
+            {user ? 
+            <>
+                <div className="section-registration">
                     <div className="container">
                         <div className="registration-form">
                             <br/>
-                            <form onSubmit = {handleSubmit} className="register-form">
+                            <form onSubmit={handleSubmit} className="register-form">
                                 <div>
                                     <h1 className="main-heading">Add Course</h1> 
                                     <label htmlFor="name">Name: </label>
@@ -86,8 +94,8 @@ export const AddCourses = () =>
                                         id="name"
                                         required
                                         autoComplete="off"
-                                        value = {courseData.name}
-                                        onChange = {handleInput} 
+                                        value={courseData.name}
+                                        onChange={handleInput} 
                                     />
                                 </div>
                                 <div>
@@ -99,21 +107,21 @@ export const AddCourses = () =>
                                         id="duration"
                                         required
                                         autoComplete="off"
-                                        value = {courseData.duration}
-                                        onChange = {handleInput} 
+                                        value={courseData.duration}
+                                        onChange={handleInput} 
                                     />
                                 </div>
                                 <div>
-                                <label htmlFor="description">Description: </label>
-                                        <textarea
-                                            name="description"
-                                            placeholder="Describe the course in a few words"
-                                            id="description"
-                                            required
-                                            autoComplete="off"
-                                            value={courseData.description}
-                                            onChange={handleInput}
-                                            rows="5"/>
+                                    <label htmlFor="description">Description: </label>
+                                    <textarea
+                                        name="description"
+                                        placeholder="Describe the course in a few words"
+                                        id="description"
+                                        required
+                                        autoComplete="off"
+                                        value={courseData.description}
+                                        onChange={handleInput}
+                                        rows="5"/>
                                 </div>
                                 <div>
                                     <label htmlFor="level">Level: </label>
@@ -124,8 +132,8 @@ export const AddCourses = () =>
                                         id="level"
                                         required
                                         autoComplete="off"
-                                        value = {courseData.level}
-                                        onChange = {handleInput} 
+                                        value={courseData.level}
+                                        onChange={handleInput} 
                                     />
                                 </div>
                                 <div>
@@ -137,10 +145,49 @@ export const AddCourses = () =>
                                         id="url"
                                         required
                                         autoComplete="off"
-                                        value = {courseData.url}
-                                        onChange = {handleInput} 
+                                        value={courseData.url}
+                                        onChange={handleInput} 
                                     />
-                                </div>                                
+                                </div>
+                                <div>
+                                    <label htmlFor="syllabus">Syllabus: </label>
+                                    <textarea
+                                        type="text" 
+                                        name="syllabus" 
+                                        placeholder="What shall be covered in the course?" 
+                                        id="syllabus"
+                                        required
+                                        autoComplete="off"
+                                        value={courseData.syllabus}
+                                        onChange={handleInput} 
+                                        rows={5}
+                                    />
+                                </div>
+                                <div>
+                                    <label htmlFor="prerequisites">Prerequisites: </label>
+                                    <textarea
+                                        type="text" 
+                                        name="prerequisites"
+                                        placeholder="Prior knowledge (if any) required to complete the course" 
+                                        id="prerequisites"
+                                        required
+                                        autoComplete="off"
+                                        value={courseData.prerequisites}
+                                        onChange={handleInput} 
+                                        rows={5}
+                                    />
+                                </div>  
+                                <div>
+                                    <label htmlFor="user">Added by: </label>
+                                    <input 
+                                        type="text" 
+                                        name="user"
+                                        id="user"
+                                        autoComplete="off"
+                                        disabled
+                                        value={user.username}
+                                    />
+                                </div>                              
                                 <br/>
                                 <button type="submit" className="register-btn">
                                     Add Course
@@ -149,7 +196,9 @@ export const AddCourses = () =>
                         </div>    
                     </div>
                 </div>
+            </> :
+            <h1 className="container">Please login to add courses</h1> }
         </>
     )
-
+    
 }

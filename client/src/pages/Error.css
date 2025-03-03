@@ -15,7 +15,11 @@
 }
 
 
-@media (max-width:970px)
-{
-    
+@media (max-width: 970px) {
+    .error-img {
+        display: block !important; 
+        width: 65%;
+        height: 65%;
+        visibility: visible !important; 
+    }
 }

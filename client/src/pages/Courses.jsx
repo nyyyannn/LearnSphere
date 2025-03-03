@@ -4,7 +4,7 @@ import "./Courses.css";
 
 export const Courses = () => {
   const { user, courses } = useAuth();
-
+  
   return (
     <>
       {user.username ? (
@@ -40,7 +40,7 @@ export const Courses = () => {
           </div>
         </>
       ) : (
-        <h1>Please login to view the courses</h1>
+        <h1 className="container">Please login to view the courses</h1>
       )}
     </>
   );
