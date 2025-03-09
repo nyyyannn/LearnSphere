@@ -12,7 +12,7 @@ const connectDb = require("./utils/db");
 const errorMiddleware = require("./middlewares/error-middleware");
 
 const corsOptions = {
-  origin: `${VITE_APP_URI_API}`, //allows requests only from this URL
+  origin: process.env.VITE_APP_URI_API, //allows requests only from this URL
   methods: "GET, POST, PUT, DELETE, PATCH, HEAD", // the allowed methods, other methods will be blocked 
   credentials:true, //necessary if we are using JWT, which we are, 
   optionsSuccessStatus: 200 //optional
