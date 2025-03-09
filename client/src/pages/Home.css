@@ -135,6 +135,7 @@ h2
     .facts
     {
         flex-direction: column;
+        margin-top:50px;
     }
     .get-started-img
     {
