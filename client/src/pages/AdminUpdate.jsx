@@ -96,8 +96,8 @@ export const AdminUpdate = () =>
     return(
         <>
         <section className="update-container">
-                    <h1>Edit data</h1>
                     <form onSubmit={handleSubmit} className="register-form">
+                    <h1>Edit data</h1>
                         <div>
                             <label htmlFor="username">Username: </label>
                             <input
