@@ -1,5 +1,6 @@
 import "./Home.css";
 import { useAuth } from "../store/Auth";
+import { Link } from "react-router-dom";
 
 export const Home = () => {
 
@@ -21,11 +22,11 @@ export const Home = () => {
                                             View Services
                                         </button>
                                     </a>
-                                    <a href="/courses">
+                                    <Link to="/courses">
                                         <button>
                                             Explore courses
                                         </button>
-                                    </a>
+                                    </Link>
                                     </>
                                     :
                                     <><a href="/services">
