@@ -140,7 +140,7 @@ export const Register =  () => {
                                 </button>
                                 <div className="signedup">
                                     <p>Already signed up? 
-                                        <a href="/login" className="signeduplogin"> Login </a>
+                                        <Link to="/login" className="signeduplogin"> Login </Link>
                                     </p>
                                 </div>
                             </form>

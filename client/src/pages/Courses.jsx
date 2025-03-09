@@ -1,10 +1,16 @@
 import { useAuth } from "../store/Auth";
 import { Link } from "react-router-dom";
+import { useEffect, useState } from "react";
 import "./Courses.css";
 
 export const Courses = () => {
   const { user, courses } = useAuth();
-  
+  const [courseList, setCourseList] = useState([]);
+
+  useEffect(() => {
+    setCourseList(courses); // Update the local state when courses change
+  }, [courses]); // Depend on courses
+
   return (
     <>
       {user.username ? (
@@ -13,8 +19,12 @@ export const Courses = () => {
             <h1>Welcome {user.username}, ready to learn?</h1>
           </section>
 
+          {courseList.length===0 ? 
+          <div className="nocourses container">
+            <h2>No courses available right now. Check back later or add one!</h2>
+          </div> : 
           <div className="container grid-three-cols">
-            {courses.map(({ _id, name, duration, level }, index) => (
+            {courseList.map(({ _id, name, duration, level }, index) => (
               <div className="courses" key={_id || index}>
                 <div className="course">
                   <Link to={`/courses/${_id}`}>
@@ -31,7 +41,7 @@ export const Courses = () => {
                 </div>
               </div>
             ))}
-          </div>
+          </div>}
 
           <div className="courses-button">
             <Link to="/courses/addCourses">

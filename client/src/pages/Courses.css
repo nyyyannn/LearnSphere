@@ -57,6 +57,12 @@
     justify-content: center;    
     align-items: center;
 }
+.nocourses h2
+{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 
   
   @media (max-width: 970px) {

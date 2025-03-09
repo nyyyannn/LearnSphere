@@ -4,7 +4,7 @@ import { useAuth } from "../store/Auth";
 import { useState } from "react";
 
 export const Navbar = () => {
-    const { isLoggedIn } = useAuth();
+    const { isLoggedIn, user } = useAuth();
     const [menuOpen, setMenuOpen] = useState(false);
 
     return (
@@ -30,8 +30,13 @@ export const Navbar = () => {
                         <ul>
                             <li onClick={() => setMenuOpen(false)} > <NavLink to="/"> Home </NavLink> </li>
                             <li onClick={() => setMenuOpen(false)} > <NavLink to="/about"> About </NavLink> </li>
-                            <li onClick={() => setMenuOpen(false)} > <NavLink to="/contact"> Contact </NavLink> </li>
-                            <li onClick={() => setMenuOpen(false)} > <NavLink to="/services"> Services </NavLink> </li>
+                            {user.isAdmin ? 
+                                <li onClick={() => setMenuOpen(false)} > <NavLink to="/admin/users"> Admin </NavLink> </li>
+                                :
+                                <>
+                                <li onClick={() => setMenuOpen(false)} > <NavLink to="/contact"> Contact </NavLink> </li>
+                                <li onClick={() => setMenuOpen(false)} > <NavLink to="/services"> Services </NavLink> </li>
+                            </>}
                             {isLoggedIn ? 
                             <>
                             <li onClick={()=> setMenuOpen(false)}> <NavLink to="/courses"> Courses </NavLink> </li>

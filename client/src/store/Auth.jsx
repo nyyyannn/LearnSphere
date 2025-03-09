@@ -51,7 +51,7 @@ export const AuthProvider = ( {children} ) => //children is any component inside
         if(response.ok)
         {
             const data = await response.json();
-            setUser(data.userData); //contains object userData, hence the reason, we use user.userData.email in Contact.jsx
+            setUser(data.userData); //contains object userData, hence the reason we used data.userData
             setIsLoading(false); 
         }
         else
@@ -129,6 +129,7 @@ export const AuthProvider = ( {children} ) => //children is any component inside
                                         isLoading,
                                         courses,
                                         API,
+                                        getCourses
                                      }}>
             {children}
         </AuthContext.Provider>

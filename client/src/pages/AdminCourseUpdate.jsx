@@ -1,96 +1,116 @@
 import { useEffect, useState } from "react";
-import { toast } from "react-toastify";
 import { useAuth } from "../store/Auth";
-import { Navigate, useNavigate } from "react-router-dom";
+import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 
-export const AddCourses = () =>
+export const AdminCourseUpdate = () =>
 {
 
-    const { user, API, getCourses } = useAuth(); 
+    const { user, API, authorizationToken, getCourses } = useAuth(); 
 
     const navigate = useNavigate();
 
-    const [courseData, setCourseData] = useState({
-        name:"",
-        duration:"",
-        description:"",
-        level: "",
-        url:"",
-        syllabus:"",
-        prerequisites:"",
-        user:user.username
-    });
+    const [courseData, setCourseData] = useState(
+        {
+            name:"",
+            duration:"",
+            description:"",
+            level: "",
+            url:"",
+            syllabus:"",
+            prerequisites:"",
+            user:user.username
+        }
+    )
 
-    
+    const params = useParams();
 
-    const handleInput = (e) =>
+    const getSingleCourseData = async()=>
+    {
+        try
+        {
+            const response = await fetch(`${API}/api/admin/courses/${params.id}`,
+                {
+                    method:"GET",
+                    headers:{
+                        authorization: authorizationToken
+                    }
+                }
+            )
+            const data = await response.json();
+            setCourseData(data);
+        }
+        catch(error)
+        {
+            console.log(error);
+        }
+    }
+
+    useEffect(()=>
+    {
+        getSingleCourseData();
+    },[])
+
+    const handleInput = (e) => //ensuring the data in the form can be edited
     {
         let name = e.target.name;
         let value = e.target.value;
 
-        setCourseData(
-            {
-                ...courseData,
-                [name]:value
-            }
-        )
+        setCourseData({
+            ...courseData,
+            [name]:value,
+        })
     }
 
-    const handleSubmit = async (e) =>
+    const handleSubmit = async(e) =>
     {
         e.preventDefault();
-        if(user)
+        try
         {
-            const response = await fetch(`${API}/api/form/addCourses`,
+            const response = await fetch(`${API}/api/admin/courses/update/${params.id}`,
                 {
-                    method:"POST",
-                    headers:
-                    {
-                        "Content-type":"application/json"
+                    method:"PATCH",
+                    headers:{
+                        "Content-type":"application/json", //content being sent is json type (check admin controller, the data is converted to json)
+                        Authorization: authorizationToken //necessary to pass to check if admin is deleting
                     },
-                    body: JSON.stringify(courseData)
+                    body:JSON.stringify(courseData),
                 }
-            )
+            );
             if(response.ok)
             {
                 getCourses();
-                setCourseData({
-                    name: "",
-                    duration:"",
-                    description: "",
-                    level: "",
-                    url:"",
-                    syllabus: "",
-                    prerequisites:"",
-                    user:user.username
-                })
-                toast.success("Course posted successfully", {
+                toast.success("Updated successfully", {
                     className: "Toastify",
-                    style: { fontFamily: "Forum, sans-serif", fontSize: "1.8rem" },});
-                navigate("/courses");
+                    style: { fontFamily: "Forum, sans-serif", fontSize: "1.8rem" },
+                });
+                navigate("/admin/courses");
             }
+            else
+            {
+                toast.error("Error updating data", {
+                    className: "Toastify",
+                    style: { fontFamily: "Forum, sans-serif", fontSize: "1.8rem" },
+                });
+            }
+
         }
-        else
+        catch(error)
         {
-            toast.error("Please login to post a course", {
-                                            className: "Toastify",
-                                            style: { fontFamily: "Forum, sans-serif", fontSize: "1.8rem" },
-                        });
+            console.log(error);
         }
     }
-    
 
-    return (
+
+    return(
         <>
-            {user ? 
-            <>
-                <div className="section-registration">
+            <div className="section-registration">
                     <div className="container">
                         <div className="registration-form">
                             <br/>
                             <form onSubmit={handleSubmit} className="register-form">
                                 <div>
-                                    <h1 className="main-heading">Add Course</h1> 
+                                    <h1 className="main-heading">Update Course</h1> 
                                     <label htmlFor="name">Name: </label>
                                     <input 
                                         type="text" 
@@ -159,7 +179,7 @@ export const AddCourses = () =>
                                     <textarea
                                         type="text" 
                                         name="syllabus" 
-                                        placeholder="What shall be covered in the course? Seperate each by a comma" 
+                                        placeholder="What shall be covered in the course?" 
                                         id="syllabus"
                                         required
                                         autoComplete="off"
@@ -195,15 +215,12 @@ export const AddCourses = () =>
                                 </div>                              
                                 <br/>
                                 <button type="submit" className="register-btn">
-                                    Add Course
+                                    Update Course
                                 </button>
                             </form>
                         </div>    
                     </div>
                 </div>
-            </> :
-            <h1 className="container">Please login to add courses</h1> }
         </>
     )
-    
 }
