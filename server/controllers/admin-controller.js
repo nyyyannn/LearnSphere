@@ -57,7 +57,6 @@ const getAllMessages = async(req, res, next) =>
 
 const getUserById = async(req, res, next) =>
 {
-    console.log("Requested ID:", req.params.id); // Debugging 
     try
     {
         const id = req.params.id;

@@ -59,6 +59,5 @@ const PORT = 5000;
 
 connectDb().then(() => { //only if the connection is succesful with the database, start the server.
     app.listen(PORT, () => {
-    console.log(`Server is running at port: ${PORT}`);
     });
 }); 

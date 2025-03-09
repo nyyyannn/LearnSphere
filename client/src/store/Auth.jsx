@@ -19,7 +19,6 @@ export const AuthProvider = ( {children} ) => //children is any component inside
     const authorizationToken = `Bearer ${token}`; //storing token in a variable;
     
     const API = import.meta.env.VITE_APP_URI_API;
-    console.log(API);
 
     let isLoggedIn = !!token; //converts token to either truthsy or falsly value. If token is non empty string, true else false
 

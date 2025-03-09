@@ -30,7 +30,6 @@ export const AdminUpdate = () =>
                 }
             )
             const data = await response.json();
-            console.log(`After update: ${data}`);
             setData(data);
         }   
         catch(error)
