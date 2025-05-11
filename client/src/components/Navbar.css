@@ -1,11 +1,11 @@
-.navbar
-{
-    max-width: 140rem;
+.navbar {
     margin: 0 auto;
-    padding: 4.2rem 2.4rem;
+    padding: 25px 20px 10px 20px;
     display: flex;
     justify-content: space-between;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* <-- This is the new line */
 }
+
 .logo-brand
 {
     font-size: 1.8rem;
