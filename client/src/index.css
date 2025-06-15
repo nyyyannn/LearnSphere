@@ -86,7 +86,7 @@ button
 {
     text-transform: capitalize;
     color: hsl(0, 0%, 100%);
-    background-color: hsl(216, 48%, 51%);
+    background-color: var(--btn-color);
     font-weight: bold;
     border-radius: 15px;
     padding: 10px;
