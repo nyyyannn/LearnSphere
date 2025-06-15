@@ -34,10 +34,6 @@
     height: auto;
     display: block;
     object-fit: cover;
-    background-color: #ffdd00;
-}
-.cardimg img{
-    mix-blend-mode: multiply;
 }
 
 .card:hover {
