@@ -11,10 +11,23 @@ const adminRoute = require("./router/admin-router");
 const connectDb = require("./utils/db");
 const errorMiddleware = require("./middlewares/error-middleware");
 
+const allowedOrigins = [
+  process.env.VERCEL_URL,
+  process.env.LOCAL_HOST,
+  "http://localhost:3000",       
+  "https://your-site.vercel.app"  
+]
+
 const corsOptions = {
-  origin: process.env.VERCEL_URL, //allows requests only from this URL
+  origin: function (origin, callback) {
+    if (!origin || allowedOrigins.includes(origin)) {
+      callback(null, true);
+    } else {
+      callback(new Error("Not allowed by CORS"));
+    }
+  },
   methods: "GET, POST, PUT, DELETE, PATCH, HEAD", // the allowed methods, other methods will be blocked 
-  credentials:true, //necessary if we are using JWT, which we are, 
+  credentials:true, //necessary if we are using JWT, which we are
   optionsSuccessStatus: 200 //optional
 }
 
