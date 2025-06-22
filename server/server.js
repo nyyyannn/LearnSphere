@@ -71,4 +71,7 @@ app.use(errorMiddleware);
 const PORT = 5000;
 //starts the server and sends a message if it was successful. 
 
-connectDb();
+connectDb().then(() => { //only if the connection is succesful with the database, start the server.
+    app.listen(PORT, () => {
+    });
+}); 
