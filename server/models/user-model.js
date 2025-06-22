@@ -12,6 +12,8 @@ const userSchema = new Schema({
     email: {
         type: String,
         required: true,
+        unique: true, //to ensure that no two users can have the same email
+        lowercase: true, //to convert the email to lowercase
     },
     phone: {
         type: String,
