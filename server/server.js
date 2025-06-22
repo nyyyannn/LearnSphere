@@ -43,7 +43,8 @@ for all subsequent route handlers. express.json() is the middleware here.*/
 
 //Mount the router: To use the router in your main Express app, you can "mount" it at specific URL prefix.
 app.use("/api/auth",authRoute); /*Method in express used to mount middleware functions at specific path.
-"/api/auth" is the base URl where the router will be mounted. It goes to the file in authRoute (auth-router.js) and gets the route (for example: /login) */
+"/api/auth" is the base URl where the router will be mounted. It goes to the file in authRoute (auth-router.js) 
+and gets the route (for example: /login) */
  
 app.use("/api/form", contactRoute); //gets /contact route
 
@@ -70,7 +71,4 @@ app.use(errorMiddleware);
 const PORT = 5000;
 //starts the server and sends a message if it was successful. 
 
-connectDb().then(() => { //only if the connection is succesful with the database, start the server.
-    app.listen(PORT, () => {
-    });
-}); 
+connectDb();
