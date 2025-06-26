@@ -10,7 +10,6 @@ until a Promise is resolved or rejected.*/
 
 const User = require("../models/user-model");
 const bcrypt = require("bcryptjs");
-const { use } = require("../router/auth-router");
 
 //home page logic
 const home = async(req, res) => {
