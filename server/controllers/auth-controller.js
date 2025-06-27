@@ -57,46 +57,45 @@ const register = async(req,res) => {
 };
 
 //login logic
-const login = async (req, res) =>
+const login = async (req, res,next) =>
+{
+    try
     {
-        try
-        {
-            const {email, password} = req.body;
+        const {email, password} = req.body;
 
-            //check if user exists or not.
-            const userExist = await User.findOne({email});//returns the entire details of the user.
-            if(!userExist)
-            {
-                return res.status(400).json({message:"User does not exist"});
-            }
-            
-            const user = await userExist.comparePassword(password);//comparing the password.
-            
-            if(user)
-            {
-                res.
-                status(200).
-                json({ 
-                       msg: "Login successful", 
-                       token: await userExist.generateToken(),
-                       userId: userExist._id.toString(), 
-                    });
-            }
-            else
-            {
-                res.status(400).json({message:"Invalid Credentials"})
-            }
-        
-        } 
-        catch(error)
+        //check if user exists or not.
+        const userExist = await User.findOne({email});//returns the entire details of the user.
+        if(!userExist)
         {
-            next(error);
+            return res.status(400).json({message:"User does not exist"});
         }
-    };
+        
+        const user = await userExist.comparePassword(password);//comparing the password.
+        
+        if(user)
+        {
+            res.
+            status(200).
+            json({ 
+                    msg: "Login successful", 
+                    token: await userExist.generateToken(),
+                    userId: userExist._id.toString(), 
+                });
+        }
+        else
+        {
+            res.status(400).json({message:"Invalid Credentials"})
+        }
+    
+    } 
+    catch(error)
+    {
+        next(error);
+    }
+};
 
 
 //user logic
-
 const user = async (req,res) =>
 {
     try {
