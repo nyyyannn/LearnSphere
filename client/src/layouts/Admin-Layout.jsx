@@ -1,4 +1,5 @@
 import { Navigate, NavLink, Outlet } from "react-router-dom";
+import "./Admin-Layout.css"; 
 import { FaUser } from "react-icons/fa";
 import { FaMessage } from "react-icons/fa6";
 import { useAuth } from "../store/Auth";
@@ -27,10 +28,10 @@ export const AdminLayout = () =>
                 <div className="container">
                     <nav className="navAdmin">
                         <ul>
-                            <li> <NavLink to="/admin/users"><FaUser/> Users</NavLink></li>
-                            <li> <NavLink to="/admin/contacts"><FaMessage/> Contacts</NavLink></li>
-                            <li> <NavLink to="/admin/courses"><FaBookOpen/> Courses</NavLink></li>
-                            <li> <NavLink to="/"><FaHome/> Home</NavLink></li>
+                            <li> <NavLink to="/admin/users" className="navList"><FaUser className="icon"/> Users</NavLink></li>
+                            <li> <NavLink to="/admin/contacts" className="navList"><FaMessage className="icon"/> Contacts</NavLink></li>
+                            <li> <NavLink to="/admin/courses" className="navList"><FaBookOpen className="icon"/> Courses</NavLink></li>
+                            <li> <NavLink to="/" className="navList"><FaHome className="icon"/> Home</NavLink></li>
                         </ul>
                     </nav>
                 </div>
