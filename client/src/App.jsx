@@ -12,7 +12,7 @@ import { AddCourses } from "./pages/AddCourses";
 import { Navbar } from "./components/Navbar";
 import { Footer } from "./components/Footer";
 import { Error } from "./pages/Error";
-import { AdminLayout } from "./components/layouts/Admin-Layout";
+import { AdminLayout } from "./layouts/Admin-Layout";
 import { AdminContacts } from "./pages/Admin-Contacts";
 import { AdminUsers } from "./pages/Admin-Users";
 import { AdminUpdate } from "./pages/AdminUpdate";

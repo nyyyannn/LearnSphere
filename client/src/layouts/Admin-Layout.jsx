@@ -1,7 +1,7 @@
 import { Navigate, NavLink, Outlet } from "react-router-dom";
 import { FaUser } from "react-icons/fa";
 import { FaMessage } from "react-icons/fa6";
-import { useAuth } from "../../store/Auth";
+import { useAuth } from "../store/Auth";
 import { FaHome } from "react-icons/fa";
 import { FaBookOpen } from "react-icons/fa";
 
